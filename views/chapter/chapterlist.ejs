@@ -1,0 +1,13 @@
+<% layout("./layoutAll/layout.ejs") -%>
+  <div id="chapterContainer">
+    <% for (let item of data) { %>
+      <div class="chapter">
+        <h5>TITLE: <%= item.title %></h5>
+        <form action="/allchapter?" method="get">
+          <input type="hidden" name="title" value="<%= item.title %>">
+                    <input type="hidden" name="name" value="<%= name %>">
+          <button type="submit" class="see-btn">SEE NOTES</button>
+        </form>
+      </div>
+      <% } %>
+  </div>

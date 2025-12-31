@@ -1,0 +1,57 @@
+*{
+    margin: 0;
+    padding: 0;
+     font-family: 'Poppins', sans-serif;
+}
+#seccontainer{
+    height: 100vh;
+    width: 100%;
+    display: grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-template-rows: repeat(4,1fr);
+  grid-gap:8px 8px;
+background-color: rgb(250, 243, 235);
+}
+#secsmcon a{ text-decoration: none ;
+    color:black;
+}
+#secsmcon{
+    margin:14px 8px 0px 10px;
+    padding-top: 5px;
+    text-align: center;
+    background-color:rgb(254, 202, 202);
+    border-radius: 20px;
+    box-shadow: 2px 2px 5px #0000000a;
+ transform: scale(1);
+    transition: transform .3s ease-in-out ; 
+
+}
+#secsmcon:hover{
+   transform: scale(.96);
+   opacity:.7;
+}
+#secsmcon h3{
+    color:blue;
+    padding: 4px;
+    }
+    #secsmcon h4{
+        color:#061e47;
+    }
+#secsmcon p{
+    line-height: auto;
+    padding: 4px;
+}
+@media ((min-width:401px) and (max-width:800px)){
+    #seccontainer{
+    display: grid;
+  grid-template-columns: repeat(2,1fr);
+  grid-template-rows: repeat(5,1fr);
+}
+}
+@media (max-width:400px){
+    #seccontainer{
+    display: grid;
+  grid-template-columns: repeat(1,1fr);
+  grid-template-rows: repeat(1,1fr);
+}
+}

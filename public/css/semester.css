@@ -1,0 +1,117 @@
+#sembigcon {
+    height: 85vh;
+    width: auto;
+    /* background-color: antiquewhite; */
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    place-items: center;
+    grid-column-gap:10px;
+}
+
+#a {
+    text-decoration: none;
+    color: black;
+}
+
+.semsmallcon {
+    text-align: center;
+    height: 80%;
+    width: 75%;
+    background-color: #e0f2fe;
+    /* Soft sky blue */
+    /* border: 2px solid #0284c7;  */
+    border: none;
+    border-radius: 40px;
+    box-shadow: 2px 3px 10px rgba(10, 10, 10, .1005);
+    cursor: pointer;
+     transition: transform .4s, box-shadow 0.25s;
+}
+
+.semsmallcon:hover {
+    background-color: #e0f2fe;
+    /* Blue hover */
+    color: #fff;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+    transform: translateY(-5px);
+}
+
+.semsmallcon:active {
+    transform: scale(.99, .99);
+    background-color: rgb(162, 233, 245);
+}
+
+.semsmallcon h3 {
+    color: #0369a1;
+    /* Deep blue heading */
+    padding-top: 15px;
+}
+
+.semsmallcon p {
+    padding-top: 15px;
+    color: #0f172a;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    line-height: auto;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0 auto;
+    max-width: 90%;
+}
+
+.semsmallcon h5 {
+    padding-top: 46px;
+}
+@media(max-width:500px) {
+    #sembigcon {
+        margin-top: 7px;
+        height: 90vh;
+        width: auto;
+        grid-template-rows: repeat(6, 1fr);
+        grid-template-columns: 1fr;
+        row-gap:7px;
+      }
+
+    .semsmallcon h5 {
+        padding-top: 1px;
+        padding-bottom: 10px;
+    }
+
+    .semsmallcon {
+        height: 95%;
+        width: 80%;
+        background-color: #e0f2fe;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 2px 3px 5px rgba(10, 10, 10, .1005);
+        cursor: pointer;
+    }
+    .semsmallcon p {
+    padding-top: 5px;
+    padding-bottom: 8px;
+}
+.semsmallcon h3 {
+    padding-top: 5px;
+}
+
+}
+
+@media (min-width: 500px) and (max-width: 900px) {
+    #sembigcon {
+        height: 90vh;
+        width: auto;
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .semsmallcon h5 {
+        padding-top: 5px;
+    }
+
+    .semsmallcon {
+        height: 85%;
+        width: 80%;
+        background-color: #e0f2fe;
+        border: none;
+        border-radius: 25px;
+    }
+}

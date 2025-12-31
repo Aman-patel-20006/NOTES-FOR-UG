@@ -1,0 +1,31 @@
+.navbar {
+  background-color: #007bff; /* blue background */  
+  text-align: center;
+  overflow: hidden;
+  margin-top: 0;
+   padding: 10px 15px;
+      height: 3.2rem;
+ position:sticky;
+ top:0px;
+ z-index: 4;
+}
+#word {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: wheat; /* white text color */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  white-space: nowrap; /* keep one line on big screens */
+  text-shadow: 0 5px 7px rgba(0, 0, 0, 0.3);
+  transform: translateY(-3px);
+}
+  @media (width<600px){
+    .navbar{
+       height: 2.5rem;
+    }
+    #word {
+      font-size:1rem;
+    }
+  }

@@ -1,0 +1,34 @@
+<% layout("layoutAll/layout.ejs") -%>
+  <% const courses=[ { name: "Web Designing" , id: "Web Designing" , department: "Computer Science",atrue:true }, {
+    name: "Man and Environment" , id:"Man and Environment", department: "Geography",atrue:true  },{ name: "Digital Literacy" ,
+    id: "Digital Literacy" , department: "DST-CIMS",atrue:false }, { name: "Data Analysis using Excel" ,
+    id: "Data Analysis using Excel" , department: "Statistics",atrue:false }, { name: "Waste Management" , id:"Waste Management",
+    department: "Botany",atrue:false  }, { name: "Smartphone Geosciences" , id: "Smartphone Geosciences" ,
+    department: "Environmental Science" ,atrue:false }, { name: "Applied Zoology" , id: "Applied Zoology" , department: "Zoology" ,atrue:false },
+    { name: "Quality Control in Chemical Analysis" , id: "Quality Control in Chemical Analysis" ,
+    department: "Chemistry" ,atrue:false }, { name: "Awareness in Public Health Genomics" , id: "Awareness in Public Health Genomics"
+    , department: "Centre of Genetic Disorders",atrue:false  }, { name: "Ethics in Academia and Mathematical Exploration" ,
+    id: "Ethics in Academia and Mathematical Exploration" , department: "Mathematics",atrue:false  } ]; %>
+
+    <div id="seccontainer">
+      <% courses.forEach(course=> { %>
+        <div id="secsmcon">
+        <% if (course.atrue) { %>
+           <a href="/chapter?name=<%= course.name %>">
+        <% }else{ %>
+          <a href=''> 
+            <%}%>
+            <h3>Course name : <%= course.name %>
+            </h3>
+            <h4>
+              Department :<%=course.department%>
+            </h4>
+            <p>Find all your study resources here <br>
+              Notes, Papers, MCQs, and Books!</p>
+
+            <h4>For See Click Me</h4>
+          </a>
+        </div>
+
+        <% }) %>
+    </div>
