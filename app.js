@@ -51,7 +51,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => {
   res.render("main.ejs", { title: "Home Page" });  // render main.ejs
 });
-//forsec subject 
+//forsec subj 
 app.get("/sec", (req, res) => {
   res.render("secpage/sec.ejs");
 })
