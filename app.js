@@ -6,7 +6,7 @@ const conect = require("./mongoconect.js");
 // const ayorData=require("./data/ayorvega.js");
 //mongo schema
 const { Aec, chemistry, physics, computerscience, manAndEnvironment, math, secWeb, yoga, static, ayurveda } = require("./Model.js");
-//mongose
+//mongos
 // const mongoose = require("mongoose");
 // mongoose.connect("mongodb://localhost:27017/subject")
 //   .then(() => console.log("MongoDB connected"))
