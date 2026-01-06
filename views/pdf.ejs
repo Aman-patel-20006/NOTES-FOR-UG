@@ -1,14 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-           <link rel="icon" type="image/png" href="image/iconimage.png">
-           <meta name="google-site-verification" content="EGfF7a79MJ_Q2Xt1xQCqLXN-IxHsfM9d6FB4aC6gVLc" />
+  <link rel="icon" type="image/png" href="image/iconimage.png">
+  <meta name="google-site-verification" content="EGfF7a79MJ_Q2Xt1xQCqLXN-IxHsfM9d6FB4aC6gVLc" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BXT3ZXCF5X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-BXT3ZXCF5X');
+  </script>
+
   <title>PDF Viewer</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body, html { height: 100%; width: 100%; font-family: Arial, sans-serif; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body,
+    html {
+      height: 100%;
+      width: 100%;
+      font-family: Arial, sans-serif;
+    }
 
     .pdf-container {
       width: 100%;
@@ -36,15 +57,17 @@
       text-decoration: none;
       font-weight: bold;
       border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
       transition: background 0.3s, transform 0.2s;
-      z-index: 1000; /* ensures button is above iframe */
+      z-index: 1000;
+      /* ensures button is above iframe */
     }
 
     .download-btn:hover {
       background-color: #1565c0;
       transform: scale(1.05);
     }
+
     @media (max-width: 768px) {
       .download-btn {
         padding: 10px 16px;
@@ -54,13 +77,15 @@
     }
   </style>
 </head>
+
 <body>
   <div class="pdf-container">
     <iframe src="<%= srcLink %>" allowfullscreen></iframe>
   </div>
   <!-- Download button -->
-<a class="download-btn" href="<%= downloadLink %>" download>
-  Download PDF
-</a>
+  <a class="download-btn" href="<%= downloadLink %>" download>
+    Download PDF
+  </a>
 </body>
+
 </html>
