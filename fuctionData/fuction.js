@@ -61,7 +61,7 @@ function namedata(name) {
     case "statistics": return staticdata
     case "mathematics": return mathData;
     case "yoga": return yogaData;
-    case "web designing": webData;
+    case "web designing":return webData;
     case "man and environment": return manData;
     case "chemistry": return chemistryData;
     case "ayurveda": return ayorData;
