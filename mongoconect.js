@@ -5,4 +5,4 @@ function conect(){mongoose.connect(url)
    .then(() => console.log("MongoDB Atlas connected successfully!"))
   .catch(err => console.error(" Connection error:", err))};
 conect();
-  module.exports=conect;
+  module.exports={conect,url};

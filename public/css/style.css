@@ -69,3 +69,8 @@ line-height: 1;
   }
 }
 
+@media (max-width:700px){
+  .image-text{
+    font-size: large;
+  }
+}
