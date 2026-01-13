@@ -26,7 +26,7 @@ const geologie=mongoose.model("geologie",Schemamodel);
 const mxexcel=mongoose.model("mxexcel",Schemamodel);
 const quanintychemistrie=mongoose.model("quanintychemistrie",Schemamodel);
 const smartphonegeoscience=mongoose.model("smartphonegeoscience",Schemamodel);
+const mathproblemsolving=mongoose.model("mathproblemsolving",Schemamodel);
 
 
-
-module.exports={Aec,chemistry,physics,computerscience,manAndEnvironment,math,secWeb,yoga,static,ayurveda,datavalid,digitalliteracie,environment,geologie,mxexcel,quanintychemistrie,smartphonegeoscience};
+module.exports={Aec,chemistry,physics,computerscience,manAndEnvironment,math,secWeb,yoga,static,ayurveda,datavalid,digitalliteracie,environment,geologie,mxexcel,quanintychemistrie,smartphonegeoscience,mathproblemsolving};
