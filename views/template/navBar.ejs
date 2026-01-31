@@ -1,7 +1,51 @@
-<nav class="navbar ">
+<!-- <nav class="navbar ">
   <div class="container">
+    <div><img src="image/iconimage.png" alt="LOGO" height="50px" width="50px"></div> 
     <DIV id="word">
-        <span>WELCOME &nbsp; TO &nbsp; WEBSITE  &nbsp;  NOTES &nbsp; FOR &nbsp; UG  </span>
+        <span>WELCOME &nbsp; TO &nbsp; WEBSITE  &nbsp;  NOTES &nbsp; FOR &nbsp; UG   </span>
+          <a href='/auth' type="button" >ADD FILE</a>
+         <a href="/" type="button" >HOME</a>
         </DIV>
+       
   </div>
-</nav>
+</nav> -->
+
+  <nav class="navbar">
+    <div class="container">
+      <div class="logo">
+        <img src="./image/iconimage.png" alt="Logo">
+        <span class="brand-name">WELCOME TO NOTES FOR UG</span>
+      </div>
+
+      <div class="menu-toggle" id="menu-toggle">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+
+      <div class="nav-links" id="nav-links">
+                <a href='/auth' class="nav-btn" id="addFileBtn" title="ADD FIEL ON DUBLE CLICK">Add File</a>
+        <a href="/" class="nav-btn" title="GO TO HOME PAGE">Home</a>
+      </div>
+    </div>
+  </nav>
+
+
+  <script>
+    // Toggle menu on small screens
+    const menuToggle = document.getElementById("menu-toggle");
+    const navLinks = document.getElementById("nav-links");
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+      // stop single click navigation
+  const addFileBtn = document.getElementById('addFileBtn');
+  addFileBtn.addEventListener('click', (e) => {
+    e.preventDefault(); // stop normal single click
+  });
+
+  // allow double click
+  addFileBtn.addEventListener('dblclick', () => {
+    window.location.href = addFileBtn.href; // navigate on double click
+  });
+  </script>

@@ -1,0 +1,54 @@
+
+<% layout("layoutAll/layout.ejs") -%>
+<div id="bodyofupload">
+  <div id="formelement">
+    <form id="form" method="post" action="/upload" enctype="multipart/form-data">
+      <h2 id="captext"> SUBMIT CHAPTER FILE WITH NAME</h2>
+      <div id="subsem">
+        <select name="subject" id="SUBJECT">
+          <option disabled selected>CHOOSE SUBJECT </option>
+          <option value="computerscience">Computer Science</option>
+          <option value="physics"> Physics</option>
+          <option value="chemistry"> Chemistry</option>
+          <option value="math">Mathematics</option>
+          <option value="static">Statistics</option>
+          <option value="geologie">Geology</option>
+          <option value="sec">Sec</option>
+          <option value="Aec">Aec(english)</option>
+          <option value="ayurveda">Ayurveda</option>
+          <option value="environment">EVS(Environment)</option>
+          <option value="yoga">Yoga</option>
+        </select>
+        <select name="SEMESTER" id="SEMESTER" required>
+          <option value="" disabled selected>CHOOSE SEMESTER</option>
+          <option>FIRST</option>
+          <option> SECOND</option>
+          <option disabled> THIRD</option>
+          <option disabled>FOURTH</option>
+          <option disabled>FIVETH</option>
+          <option disabled>SIXTH</option>
+        </select>
+        <select name="secSubject" id="sec" required>
+          <option  disabled selected>CHOOSE SEC SUBJECT</option>
+          <option value="secWeb">Web designing</option>
+          <option value="manAndEnvironment">Man And Environment</option>
+          <option value="digitalliteracie">Digital Literacie</option>
+          <option value="mxexcel">Data Analysis using Excel</option>
+          <option value="smartphonegeoscience">Smart Phonegeo Science</option>
+          <option value="quanintychemistrie">Quality Control and Chemistry Analysis</option>
+          <option value="mathproblemsolving">Ethics in Academia and Mathematics Exploration</option>
+        </select>
+      </div>
+      <label for="name" id="namelable">ENTER NAME OF CHAPTER:</label>
+      <input type="text" id="name" name="title" title="PUT SUBJECT NAME" placeholder="ENTER CHAPTER NAME" required>
+      <label>CHOOSE FILE TO UPLOAD:</label>
+      <div class="file-upload" title="FILE NAME">
+        <span class="file-text" id="file-name">No file chosen</span>
+        <label class="file-btn" for="fileInput">Choose File</label>
+        <input type="file" name="file" id="fileInput" id="choosefile" accept=".jpg,.pdf" required>
+      </div>
+      <button type="submit" >SUBMIT</button>
+    </form>
+  </div>
+ <script src="script/fupload.js"></script>
+ </div>

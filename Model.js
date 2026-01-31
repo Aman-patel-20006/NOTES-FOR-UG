@@ -2,8 +2,9 @@ const mongoose = require("mongoose");
 const Schemamodel = new mongoose.Schema({
   title:  {
     type: String,
-    required: true
-  } ,
+    required: true,
+        unique: true   // 👈 isse same title dubara upload nahi hoga
+  },
   src:  {
     type: String,
     required: true

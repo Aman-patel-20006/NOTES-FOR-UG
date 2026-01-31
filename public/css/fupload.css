@@ -1,0 +1,225 @@
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    #bodyofupload{
+      margin-top: 0px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 92vh;
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+    }
+
+    #formelement {
+      background-color: rgb(236, 243, 249);
+      border-radius: 1.5rem;
+      padding: 2rem;
+      width: 70%;
+      max-width: 65rem;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    #form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+      width: 100%;
+    }
+
+    #namelable {
+      font-size: 1.1rem;
+    }
+
+    #name {
+      width: 85%;
+      height: 2.8rem;
+      border-radius: 0.8rem;
+      border: 3px solid rgb(155, 148, 148);
+      padding: 0.4rem 1rem;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      outline: none;
+      background-color: rgb(241, 239, 237);
+    }
+
+    #name:hover {
+      border-color: brown;
+      box-shadow: 0 0 5px rgba(165, 42, 42, 0.5);
+      cursor: pointer;
+    }
+
+    /* Custom file upload */
+    .file-upload {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 85%;
+      border: 3px solid rgb(155, 148, 148);
+      border-radius: 15px;
+      background: #f7f5f3;
+      padding: 12px 15px;
+      cursor: pointer;
+    }
+
+    .file-upload:hover {
+      border-color: #9c1b1b;
+    }
+
+    .file-text {
+      color: #333;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .file-upload input[type="file"] {
+      display: none;
+      /* hide real file input */
+    }
+
+    .file-btn {
+      background: #b22222;
+      color: white;
+      border: none;
+      padding: .5vw 2.3vw;
+      /* height and width adjust with screen */
+      font-size: 1.3vw;
+      border-radius: .5rem;
+      cursor: pointer;
+      transition: 0.4s;
+    }
+
+    .file-btn:hover {
+      background: #8b1a1a;
+      color: rgb(253, 253, 188);
+      transform: scale(1.04);
+    }
+
+    button {
+      padding: 0.58rem 1.8rem;
+      border: none;
+      border-radius: 1rem;
+      background-color: brown;
+      color: white;
+      cursor: pointer;
+      font-size: 3vh;
+      transition: 0.4s;
+    }
+
+    button:hover {
+      background-color: rgb(121, 33, 33);
+      color: rgb(255, 186, 101);
+      transform: scale(1.05);
+    }
+
+    #captext {
+      font-weight: bolder;
+    }
+
+    #SUBJECT,
+    #SEMESTER,
+    #sec {
+      width: 16.2vw;
+      height: 7vh;
+      border-radius: 1rem;
+      padding: 2%;
+      background-color: #f7f5f3;
+      font-size: 1.1vw;
+    }
+
+    #SUBJECT:hover,
+    #SEMESTER:hover,
+    #sec:hover {
+      border: brown solid .12rem;
+      box-shadow: 0 0 5px rgba(165, 42, 42, 0.5);
+      cursor: pointer;
+    }
+
+    #subsem {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5vh;
+    }
+
+    #SUBJECT:focus,
+    #SEMESTER:focus,
+    #sec:focus {
+      background-color: transparent;
+    }
+
+    @media(max-width:950px) {
+      #subsem {
+        display: grid;
+         grid-template-rows: repeat(1, 1fr);
+         grid-auto-rows: 1fr; 
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5vh;
+        /* adds small space between boxes */
+      }
+
+      #SUBJECT,
+      #SEMESTER,
+      #sec {
+        width: 33vw;
+        height: 7vh;
+        border-radius: 1rem;
+        padding: 2%;
+        font-size: 1.7vw;
+      }
+
+      #formelement {
+        padding: 1.5rem;
+        width: 90%;
+        max-width: 65rem;
+      }
+
+      .file-btn {
+        padding: 1vh 2vw;
+        font-size: 2vw;
+      }
+
+    }
+
+    /* modile */
+    @media(max-width:500px) {
+      #subsem {
+        display: grid;
+        grid-template-rows: repeat(2, 1fr);
+         grid-auto-rows: 1fr; 
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1.5vh;
+        /* adds small space between boxes */
+      }
+
+      #SUBJECT,
+      #SEMESTER,
+      #sec {
+        width: 17rem;
+        height: 6vh;
+        border-radius: 1rem;
+        padding: 2%;
+        font-size: 3vw;
+      }
+
+      #formelement {
+        padding: 1.5rem;
+        width: 100%;
+        max-width: 65rem;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .file-btn {
+        padding: 1vh 2vw;
+        font-size: 4vw;
+      }
+
+      #captext {
+        font-weight: bolder;
+        font-size: medium;
+      }
+    }

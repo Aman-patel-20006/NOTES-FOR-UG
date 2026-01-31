@@ -1,6 +1,6 @@
 const conect = require("../mongoconect.js");
 const { Aec, chemistry, physics, computerscience, manAndEnvironment, math, secWeb, yoga, static, ayurveda,
-  datavalid, digitalliteracie, environment, geologie, mxexcel, quanintychemistrie, smartphonegeoscience,mathproblemsolving } = require("../Model.js");
+  datavalid, digitalliteracie, environment, geologie, mxexcel, quanintychemistrie, smartphonegeoscience, mathproblemsolving } = require("../Model.js");
 //data define
 let aecdata = null;
 chemistryData = null;
@@ -19,7 +19,7 @@ geologieData = null;
 mxexcelData = null;
 quanintychemistrieData = null;
 smartphonegeoscienceData = null;
-mathsolveData=null;
+mathsolveData = null;
 
 //to find mongodb dat
 async function getData() {
@@ -35,44 +35,54 @@ async function getData() {
     datacorrec = await datavalid.find().sort({ _id: 1 });
     environmentData = await environment.find().sort({ _id: 1 });
     geologieData = await geologie.find().sort({ _id: 1 });
-   
   } catch (error) {
 
   }
 }
 async function secDatafind() {
   try {
-       digitalData = await digitalliteracie.find().sort({ _id: 1 });
+    digitalData = await digitalliteracie.find().sort({ _id: 1 });
     webData = await secWeb.find().sort({ _id: 1 });
     manData = await manAndEnvironment.find().sort({ _id: 1 });
-     mxexcelData = await mxexcel.find().sort({ _id: 1 });
+    mxexcelData = await mxexcel.find().sort({ _id: 1 });
     quanintychemistrieData = await quanintychemistrie.find().sort({ _id: 1 });
     smartphonegeoscienceData = await smartphonegeoscience.find().sort({ _id: 1 });
-    mathsolveData=await mathproblemsolving.find().sort({ _id: 1 });
+    mathsolveData = await mathproblemsolving.find().sort({ _id: 1 });
   } catch (error) {
     console.error("Error fetching data:", error);
   }
 }
-
 function namedata(name) {
   switch (name) {
-    case "computer": return csData;
+    case "computer":
+    case "computerscience": return csData;
     case "physics": return phydata;
+    case "Aec":
     case "aec": return aecdata;
+    case "static":
     case "statistics": return staticdata
-    case "mathematics": return mathData;
+    case "mathematics":
+    case "math": return mathData;
     case "yoga": return yogaData;
-    case "web designing": return webData;
+    case "web designing":
+      case "secWeb": return webData;
+    case "manAndEnvironment":
     case "man and environment": return manData;
     case "chemistry": return chemistryData;
     case "ayurveda": return ayorData;
+    case "digitalliteracie":
     case "digital literacy": return digitalData;
+    case "mxexcel":
     case "data analysis using excel": return mxexcelData;
+    case "quanintychemistrie":
     case "quality control in chemical analysis": return quanintychemistrieData;
+    case "smartphonegeoscience":
     case "smartphone geosciences": return smartphonegeoscienceData;
-    case "geology":return geologieData;
-    case "environment":return environmentData;
-    case "ethics in academia and mathematical exploration":return mathsolveData;
+    case "geologie":
+    case "geology": return geologieData;
+    case "environment": return environmentData;
+    case "mathproblemsolving":return mathsolveData;
+    case "ethics in academia and mathematical exploration": return mathsolveData;
     default: return datacorrec;
   }
 }
