@@ -93,6 +93,7 @@ app.get("/auth", (req, res) => {
   const authUrl = oauth2Client.generateAuthUrl({
     access_type: "offline",
     scope: SCOPES,
+      redirect_uri: process.env.REDIRECT_URI, 
   });
   res.redirect(authUrl);
 });
