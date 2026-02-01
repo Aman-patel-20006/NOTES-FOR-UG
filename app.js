@@ -80,10 +80,11 @@ app.get("/allchapter", (req, res) => {
 // });
 
 //file upload 
+const link="https://notes-for-ug.onrender.com/oauth2callback"
 const oauth2Client = new google.auth.OAuth2(
   process.env.CLIENT_ID,
   process.env.CLIENT_SECRET,
-  process.env.REDIRECT_URI
+link
 );
 const SCOPES = ["https://www.googleapis.com/auth/drive.file"];
 app.get("/auth", (req, res) => {
@@ -93,7 +94,6 @@ app.get("/auth", (req, res) => {
   const authUrl = oauth2Client.generateAuthUrl({
     access_type: "offline",
     scope: SCOPES,
-      redirect_uri: process.env.REDIRECT_URI, 
   });
   res.redirect(authUrl);
 });
