@@ -3,7 +3,7 @@
     <% for (let item of data) { %>
       <div class="chapter">
         <h5>TITLE: <%= item.title %></h5>
-        <form action="/allchapter?" method="get">
+        <form action="/allchapter/<%=semester%>" method="get">
           <input type="hidden" name="title" value="<%= item.title %>">
                     <input type="hidden" name="name" value="<%= name %>">
           <button type="submit" id="see-btn">VIEW</button>

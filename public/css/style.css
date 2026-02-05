@@ -82,3 +82,10 @@ line-height: 1;
     font-size: large;
   }
 }
+@media(max-height:400px){
+     .image-text .text {
+      font-size: medium;
+    line-height: 1.5;
+  margin-top: 60px;
+  }
+}

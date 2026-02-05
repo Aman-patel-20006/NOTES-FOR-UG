@@ -43,10 +43,11 @@
   document.getElementById("form").addEventListener("submit", async function(e) {
    e.preventDefault();
   const namevalid = document.getElementById('name');
+  const Semester= document.getElementById('SEMESTER').value;
   let subj = selectSub.selectedOptions[0].value;
 let subject = (subj === "sec") ? selectSec.selectedOptions[0].value : subj;
       const title = namevalid.value.trim();
-  const res = await fetch(`/check-title?title=${encodeURIComponent(title)}&subject=${encodeURIComponent(subject)}`);
+  const res = await fetch(`/check-title?title=${encodeURIComponent(title)}&subject=${encodeURIComponent(subject)}&Semester=${encodeURIComponent(Semester)}`);
     const text = await res.text(); // 👈 fetch text response
   if (text === "true") {
   alert("Chapter name already exists ! Please Change Name Like This [CHAPER NAME Notes-1]");

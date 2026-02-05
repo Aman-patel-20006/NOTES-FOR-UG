@@ -5,13 +5,13 @@
     <form id="form" method="post" action="/upload" enctype="multipart/form-data">
       <h2 id="captext"> SUBMIT CHAPTER FILE WITH NAME</h2>
       <div id="subsem">
-        <select name="subject" id="SUBJECT">
+        <select name="subject" id="SUBJECT" required>
           <option disabled selected>CHOOSE SUBJECT </option>
           <option value="computerscience">Computer Science</option>
           <option value="physics"> Physics</option>
           <option value="chemistry"> Chemistry</option>
           <option value="math">Mathematics</option>
-          <option value="static">Statistics</option>
+          <option value="statistics">Statistics</option>
           <option value="geologie">Geology</option>
           <option value="sec">Sec</option>
           <option value="Aec">Aec(english)</option>
@@ -19,10 +19,10 @@
           <option value="environment">EVS(Environment)</option>
           <option value="yoga">Yoga</option>
         </select>
-        <select name="SEMESTER" id="SEMESTER" required>
-          <option value="" disabled selected>CHOOSE SEMESTER</option>
-          <option>FIRST</option>
-          <option> SECOND</option>
+        <select name="Semester" id="SEMESTER" required>
+          <option  disabled selected>CHOOSE SEMESTER</option>
+          <option value="First">First</option>
+          <option value="Second"> Second </option>
           <option disabled> THIRD</option>
           <option disabled>FOURTH</option>
           <option disabled>FIVETH</option>
