@@ -2,12 +2,35 @@
   <div id="chapterContainer">
     <% for (let item of data) { %>
       <div class="chapter">
-        <h5>TITLE: <%= item.title %></h5>
-        <form action="/allchapter/<%=semester%>" method="get">
-          <input type="hidden" name="title" value="<%= item.title %>">
-                    <input type="hidden" name="name" value="<%= name %>">
-          <button type="submit" id="see-btn">VIEW</button>
-        </form>
+        <!-- PDF Image -->
+        <div class="chapter-image">
+          <% let link=item.src;
+          let id=item.src.slice(item.src.indexOf("/d/")+3,item.src.indexOf("/view?usp=sharing")) %>
+          <img src="https://drive.google.com/thumbnail?id=<%=id %>" alt="PDF Preview"  id="pdfImage"  onerror="this.onerror=null; this.src='/image/pdfImage.png';" >
+        </div>
+        <div class="chapter-info">
+          <h4 class="chapter-title"> <span>Title:</span>
+            <%= item.title %>
+          </h4>
+
+          <div class="chapter-buttons">
+            <form action="/editchapter/<%= semester %>" method="get" class="chapter-form">
+              <input type="hidden" name="title" value="<%= item.title %>">
+              <button type="submit" class="btn edit-button" disabled hidden>EDIT</button>
+            </form>
+
+            <form action="/allchapter/<%= semester %>" method="get" class="chapter-form">
+              <input type="hidden" name="title" value="<%= item.title %>">
+              <input type="hidden" name="name" value="<%= name %>">
+              <button type="submit" class="btn view-button" >VIEW</button>
+            </form>
+            <form action="/deletechapter/<%= semester %>" method="post" class="chapter-form">
+              <input type="hidden" name="title" value="<%= item.title %>">
+              <button type="submit" class="btn delete-button" hidden
+                onclick="return confirm('Are you sure you want to delete this?');" disabled>DELETE</button>
+            </form>
+          </div>
+        </div>
       </div>
       <% } %>
   </div>
