@@ -123,7 +123,7 @@
 
     #SUBJECT,
     #SEMESTER,
-    #sec {
+    .sec {
       width: 16.2vw;
       height: 7vh;
       border-radius: 1rem;
@@ -134,7 +134,7 @@
 
     #SUBJECT:hover,
     #SEMESTER:hover,
-    #sec:hover {
+    .sec:hover {
       border: brown solid .12rem;
       box-shadow: 0 0 5px rgba(165, 42, 42, 0.5);
       cursor: pointer;
@@ -148,7 +148,7 @@
 
     #SUBJECT:focus,
     #SEMESTER:focus,
-    #sec:focus {
+    .sec:focus {
       background-color: transparent;
     }
 
@@ -164,7 +164,7 @@
 
       #SUBJECT,
       #SEMESTER,
-      #sec {
+      .sec {
         width: 33vw;
         height: 7vh;
         border-radius: 1rem;
@@ -198,7 +198,7 @@
 
       #SUBJECT,
       #SEMESTER,
-      #sec {
+      .secFirstsem {
         width: 17rem;
         height: 6vh;
         border-radius: 1rem;

@@ -42,7 +42,18 @@ const models = [
   "environmentsem2",
   "geologiesem2",
 "earthsciencesem2",
-"zoologysem2"
+"zoologysem2",
+"mobileDevelopment",
+"basicsofremoteSensing",
+"computationalMathematics",
+"dataAnalysis",
+"energyConversion",
+"latexTypesetting",
+"preservationandManagement",
+"foodPreservatives",
+"instrumentationinChemical",
+"gemology",
+"riskFactors"
 ];
 const mongooseModels = models .reduce((oje, name) => {
   oje[name] = mongoose.model(name, Schemamodel);

@@ -27,9 +27,10 @@ app.get('/', async (req, res) => {
   res.render("main.ejs", { title: "Home Page" });  // render main.ejs
 });
 //forsec subj 
-app.get("/sec", async (req, res) => {
+app.get("/sec/:semester", async (req, res) => {
   await secDatafind();
-  res.render("secpage/sec.ejs");
+  let semester = req.params.semester;
+  res.render("secpage/sec.ejs",{semester});
 })
 app.get("/secChapter", (req, res) => {
   const { title: chapterName, name } = req.query;
@@ -59,7 +60,7 @@ app.get("/chapter/:semester", async (req, res) => {
   } else if (semester.trim() === "Second") {
     data = await namedatasem2(name);
   }
-  if (name === "sec") { res.redirect("/sec") } else {
+  if (name === "sec") { res.redirect(`/sec/${semester}`) } else {
     res.render("chapter/chapterlist.ejs", { data, name, semester })
   };
 })
@@ -86,7 +87,7 @@ const oauth2Client = new google.auth.OAuth2(
   process.env.CLIENT_ID,
   process.env.CLIENT_SECRET,
   link
-    //  process.env.REDIRECT_URI,
+      // process.env.REDIRECT_URI,
   
 );
 const SCOPES = ["https://www.googleapis.com/auth/drive.file"];
@@ -133,6 +134,9 @@ app.post("/upload", upload.single("file"), async (req, res) => {
   const drive = google.drive({ version: "v3", auth: oauth2Client });
   const fileMetadata = {
     name: req.file.originalname,
+    //test id
+      //parents: ["1y7E4ju-7WFQ3Ose3dXRqfJ0z_iLsJfR4"],// 👈 Folder where file will be uploaded
+      //not test real 
     parents: ["1dzzNv8QpZYY7MhLvm4Jn_uQR2ZXF_zRW"],// 👈 Folder where file will be uploaded
   };
   const bufferStream = new PassThrough();
@@ -155,17 +159,18 @@ app.post("/upload", upload.single("file"), async (req, res) => {
 // });
 //check validate title
 app.get("/check-title", async (req, res) => {
-  await getData();
+    await getData();
   await getDatasem2();
   await secDatafind();
   const { subject, title, Semester } = req.query;
   let databack = null;
-  if (Semester.trim() === "First") {
+  // console.log(subject, title, Semester );
+  if (Semester.trim() =="First".trim()) {
     databack = await namedata(subject);
-    console.log("fiest sem ", databack);
-  } else if (Semester.trim() === "Second") {
+    // console.log("fiest sem ", databack);
+  } else if (Semester.trim() =="Second".trim()) {
     databack = await namedatasem2(subject);
-    console.log("secondsem ", databack);
+    // console.log("secondsem ", databack);
   }
   if (!databack || !Array.isArray(databack)) {
     console.log("No data found for subject:", subject);

@@ -11,7 +11,9 @@ const { Aec, chemistry, physics, computerscience, manAndEnvironment, math, secWe
   environmentsem2,
   geologiesem2,
   earthsciencesem2,
-  zoologysem2 } = require("../Model.js");
+  zoologysem2,
+  mobileDevelopment, basicsofremoteSensing, computationalMathematics, dataAnalysis, energyConversion, latexTypesetting,
+  preservationandManagement, foodPreservatives, instrumentationinChemical, gemology, riskFactors } = require("../Model.js");
 const models = {
   Aec,
   chemistry,
@@ -33,28 +35,39 @@ const models = {
   mathproblemsolving,
 
 };
-let models2={
-    Aec: Aecsem2,
-      chemistry:chemistrysem2,
-    physics:physicssem2,
- computerscience:computersciencesem2,
-  math:mathsem2,
- yoga:yogasem2,
-   statistics:statisticssem2,
- ayurveda: ayurvedasem2,
-  environment:environmentsem2,
-   geologie:geologiesem2,
-earthscience: earthsciencesem2,
-zoology: zoologysem2
+let models2 = {
+  Aec: Aecsem2,
+  chemistry: chemistrysem2,
+  physics: physicssem2,
+  computerscience: computersciencesem2,
+  math: mathsem2,
+  yoga: yogasem2,
+  statistics: statisticssem2,
+  ayurveda: ayurvedasem2,
+  environment: environmentsem2,
+  geologie: geologiesem2,
+  earthscience: earthsciencesem2,
+  zoology: zoologysem2,
+  mobileDevelopment,
+  basicsofremoteSensing,
+  computationalMathematics,
+  dataAnalysis,
+  energyConversion,
+  latexTypesetting,
+  preservationandManagement,
+  foodPreservatives,
+  instrumentationinChemical,
+gemology,
+  riskFactors
 }
 async function insertData(title, src, subject, Semester) {
   let subjectModel;
-  if(Semester.trim()==="First"){
-   subjectModel = models[subject]; 
-  }else if(Semester.trim()==="Second"){
-       subjectModel = models2[subject]; 
+  if (Semester.trim() === "First") {
+    subjectModel = models[subject];
+  } else if (Semester.trim() === "Second") {
+    subjectModel = models2[subject];
   }
-// ✅ get actual model from name
+  // ✅ get actual model from name
   if (!subjectModel) {
     console.log("Invalid subject:", subject);
     return;

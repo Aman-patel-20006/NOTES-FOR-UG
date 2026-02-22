@@ -1,34 +1,47 @@
 <% layout("layoutAll/layout.ejs") -%>
-  <% const courses=[ { name: "Web Designing" , id: "Web Designing" , department: "Computer Science",atrue:true }, {
-    name: "Man and Environment" , id:"Man and Environment", department: "Geography",atrue:true  },{ name: "Digital Literacy" ,
-    id: "Digital Literacy" , department: "DST-CIMS",atrue:true }, { name: "Data Analysis using Excel" ,
-    id: "Data Analysis using Excel" , department: "Statistics",atrue:true}, { name: "Smartphone Geosciences" , id: "Smartphone Geosciences" ,
-    department: "Environmental Science" ,atrue:true },  { name: "Quality Control in Chemical Analysis" , id: "Quality Control in Chemical Analysis" ,
-    department: "Chemistry" ,atrue:true }, { name: "Ethics in Academia and Mathematical Exploration" ,
-    id: "Ethics in Academia and Mathematical Exploration" , department: "Mathematics",atrue:true  },{ name: "Waste Management" , id:"Waste Management",
-    department: "Botany",atrue:false  }, { name: "Applied Zoology" , id: "Applied Zoology" , department: "Zoology" ,atrue:false },
-    { name: "Awareness in Public Health Genomics" , id: "Awareness in Public Health Genomics"
-    , department: "Centre of Genetic Disorders",atrue:false  } ]; %>
+  <% let courses=null %>
+    <% if(semester=="First" ){ %>
+      <% courses=[ { name: "Web Designing" , id: "Web Designing" , department: "Computer Science" ,atrue:true },
+       {name: "Man and Environment" , department: "Geography" ,atrue:true },
+       { name: "Digital Literacy" , department: "DST-CIMS" ,atrue:true }, 
+       { name: "Data Analysis using Excel" , department: "Statistics" ,atrue:true},
+        { name: "Smartphone Geosciences" , department: "Environmental Science" ,atrue:true },
+         {name: "Quality Control in Chemical Analysis" , department: "Chemistry" ,atrue:true },
+          {name: "Ethics in Academia and Mathematical Exploration" , department: "Mathematics" ,atrue:true },
+          {name: "Waste Management" ,  department: "Botany" ,atrue:false }, 
+          { name: "Applied Zoology", department: "Zoology" ,atrue:false },
+           { name: "Awareness in Public Health Genomics" , department: "Centre of Genetic Disorders" ,atrue:false } ]; %>
+        <% }else{%>
+          <% courses=[ { name: "Mobile Application Development" , department: "Computer Science" ,atrue:true },
+           {name: "Basics of Remote Sensing" , department: "Geography" ,atrue:true },
+           {name: "Computational Mathematics with SageMath" , department: "DST-CIMS" ,atrue:true },
+            {name: "Data Analysis using SPSS" , department: "Statistics" ,atrue:true},
+             {name: "Energy Conversion and Storage for Sustainable Development" , department: "PHYSICS" ,atrue:true },
+              {name: "LaTeX Typesetting for Beginners" , department: "Mathematics",atrue:true },
+              { name: "Preservation and management of Microbial Resources" , department: "Botany" ,atrue:true  },
+               { name: "Food, Preservatives and Adulterants"  , department: "Zoology" ,atrue:true  },
+                { name: "Instrumentation in Chemical Industry" ,department: "Chemistry" ,atrue:true },
+                {name:"Gemology",department:"Gelogy",atrue:true },
+                {name:"Risk Factors for Genetic Disorders",department:"Centre of Genetic Disorders",atrue:true }]; %>
+            <% } %>
+              <div id="seccontainer">
+                <% courses.forEach(course=> { %>
+                  <div id="secsmcon">
+                    <% if (course.atrue) { %>
+                      <a href="/chapter/<%= semester %>?name=<%= course.name %>">
+                        <% }else{ %>
+                          <a href=''>
+                            <%}%>
+                              <h3>Course name : <%= course.name %>
+                              </h3>
+                              <h4>
+                                Department :<%=course.department%>
+                              </h4>
+                              <p>Find all your study resources here <br>
+                                Notes, Papers, MCQs, and Books!</p>
 
-    <div id="seccontainer">
-      <% courses.forEach(course=> { %>
-        <div id="secsmcon">
-        <% if (course.atrue) { %>
-           <a href="/chapter/First?name=<%= course.name %>">
-        <% }else{ %>
-          <a href=''> 
-            <%}%>
-            <h3>Course name : <%= course.name %>
-            </h3>
-            <h4>
-              Department :<%=course.department%>
-            </h4>
-            <p>Find all your study resources here <br>
-              Notes, Papers, MCQs, and Books!</p>
-
-            <h4>For View Notes Click Me</h4>
-          </a>
-        </div>
-
-        <% }) %>
-    </div>
+                              <h4>For View Notes Click Me</h4>
+                          </a>
+                  </div>
+                  <% }) %>
+              </div>

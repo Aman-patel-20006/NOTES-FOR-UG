@@ -1,35 +1,48 @@
-
 <% layout("layoutAll/layout.ejs") -%>
-<div id="bodyofupload">
-  <div id="formelement">
-    <form id="form" method="post" action="/upload" enctype="multipart/form-data">
-      <h2 id="captext"> SUBMIT CHAPTER FILE WITH NAME</h2>
-      <div id="subsem">
-        <select name="subject" id="SUBJECT" required>
-          <option disabled selected>CHOOSE SUBJECT </option>
-          <option value="computerscience">Computer Science</option>
-          <option value="physics"> Physics</option>
-          <option value="chemistry"> Chemistry</option>
-          <option value="math">Mathematics</option>
-          <option value="statistics">Statistics</option>
-          <option value="geologie">Geology</option>
-          <option value="sec">Sec</option>
-          <option value="Aec">Aec(english)</option>
-          <option value="ayurveda">Ayurveda</option>
-          <option value="environment">EVS(Environment)</option>
-          <option value="yoga">Yoga</option>
-        </select>
-        <select name="Semester" id="SEMESTER" required>
-          <option  disabled selected>CHOOSE SEMESTER</option>
-          <option value="First">First</option>
-          <option value="Second"> Second </option>
-          <option disabled> THIRD</option>
-          <option disabled>FOURTH</option>
-          <option disabled>FIVETH</option>
-          <option disabled>SIXTH</option>
-        </select>
-        <select name="secSubject" id="sec" required>
-          <option  disabled selected>CHOOSE SEC SUBJECT</option>
+  <div id="bodyofupload">
+    <div id="formelement">
+      <form id="form" method="post" action="/upload" enctype="multipart/form-data">
+        <h2 id="captext"> SUBMIT CHAPTER FILE WITH NAME</h2>
+        <div id="subsem">
+          <select name="subject" id="SUBJECT" required>
+            <option  value="" disabled selected>CHOOSE SUBJECT </option>
+            <option value="computerscience">Computer Science</option>
+            <option value="physics"> Physics</option>
+            <option value="chemistry"> Chemistry</option>
+            <option value="math">Mathematics</option>
+            <option value="statistics">Statistics</option>
+            <option value="geologie">Geology</option>
+            <option value="sec">Sec</option>
+            <option value="Aec">Aec(english)</option>
+            <option value="ayurveda">Ayurveda</option>
+            <option value="environment">EVS(Environment)</option>
+            <option value="yoga">Yoga</option>
+          </select>
+          <select name="Semester" id="SEMESTER" required >
+            <option value="" disabled selected>CHOOSE SEMESTER</option>
+            <option value="First">First</option>
+            <option value="Second"> Second </option>
+            <option disabled> THIRD</option>
+            <option disabled>FOURTH</option>
+            <option disabled>FIVETH</option>
+            <option disabled>SIXTH</option>
+          </select>
+                    <select name="secSubject"  class="sec" id="secSecondsem" required>
+            <option value="" disabled selected>CHOOSE SEC SECOND SEM SUBJECT</option>
+            <option value="mobileDevelopment">Mobile Application Development</option>
+            <option value="basicsofremoteSensing">Basics of Remote Sensing</option>
+            <option value="computationalMathematics">Computational Mathematics with SageMath</option>
+            <option value="dataAnalysis">Data Analysis using SPSS</option>
+            <option value="energyConversion">Energy Conversion and Storage for Sustainable Development</option>
+            <option value="latexTypesetting">LaTeX Typesetting for Beginners</option>
+            <option value="preservationandManagement">Preservation and management of Microbial Resources</option>
+            <option value="foodPreservatives">Food, Preservatives and Adulterants</option>
+            <option value="instrumentationinChemical">Instrumentation in Chemical Industry</option>
+            <option value="gemology">Gemology</option>
+            <option value="riskFactors">Risk Factors for Genetic Disorders</option>
+          </select>
+          <select name="secSubject" id="secFirstsem" class="sec" required>
+          <option value="" disabled selected>CHOOSE SEC SUBJECT</option>
           <option value="secWeb">Web designing</option>
           <option value="manAndEnvironment">Man And Environment</option>
           <option value="digitalliteracie">Digital Literacie</option>
@@ -38,17 +51,17 @@
           <option value="quanintychemistrie">Quality Control and Chemistry Analysis</option>
           <option value="mathproblemsolving">Ethics in Academia and Mathematics Exploration</option>
         </select>
-      </div>
-      <label for="name" id="namelable">ENTER NAME OF CHAPTER:</label>
-      <input type="text" id="name" name="title" title="PUT SUBJECT NAME" placeholder="ENTER CHAPTER NAME" required>
-      <label>CHOOSE FILE TO UPLOAD:</label>
-      <div class="file-upload" title="FILE NAME">
-        <span class="file-text" id="file-name">No file chosen</span>
-        <label class="file-btn" for="fileInput">Choose File</label>
-        <input type="file" name="file" id="fileInput" id="choosefile" accept=".jpg,.pdf" required>
-      </div>
-      <button type="submit" >SUBMIT</button>
-    </form>
+        </div> 
+        <label for="name" id="namelable">ENTER NAME OF CHAPTER:</label>
+        <input type="text" id="name" name="title" title="PUT SUBJECT NAME" placeholder="ENTER CHAPTER NAME" required>
+        <label>CHOOSE FILE TO UPLOAD:</label>
+        <div class="file-upload" title="FILE NAME">
+          <span class="file-text" id="file-name">No file chosen</span>
+          <label class="file-btn" for="fileInput">Choose File</label>
+          <input type="file" name="file" id="fileInput" id="choosefile" accept=".jpg,.pdf" required>
+        </div>
+        <button type="submit">SUBMIT</button>
+      </form>
+    </div>
+    <script src="script/fupload.js"></script>
   </div>
- <script src="script/fupload.js"></script>
- </div>

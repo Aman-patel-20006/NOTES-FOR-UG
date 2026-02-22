@@ -5,14 +5,13 @@
         <!-- PDF Image -->
         <div class="chapter-image">
           <% let link=item.src;
-          let id=item.src.slice(item.src.indexOf("/d/")+3,item.src.indexOf("/view?usp=sharing")) %>
+          let id=item.src.slice(item.src.indexOf("/d/")+3,item.src.indexOf("/view")) %>
           <img src="https://drive.google.com/thumbnail?id=<%=id %>" alt="PDF Preview"  id="pdfImage"  onerror="this.onerror=null; this.src='/image/pdfImage.png';" >
         </div>
         <div class="chapter-info">
           <h4 class="chapter-title"> <span>Title:</span>
             <%= item.title %>
           </h4>
-
           <div class="chapter-buttons">
             <form action="/editchapter/<%= semester %>" method="get" class="chapter-form">
               <input type="hidden" name="title" value="<%= item.title %>">
