@@ -11,6 +11,14 @@ const Schemamodel = new mongoose.Schema({
   }
 });
 
+let Schemamodelupload=new mongoose.Schema({
+    token:{
+           type:String,
+  createdAt: { type: Date, default: Date.now, expires: 300 } // auto delete after 300 sec = 5 min
+    }
+});
+//upload model
+let uploadtoken=mongoose.model("uploadtoke",Schemamodelupload)
 const Aec = mongoose.model("Aec", Schemamodel);
 const chemistry = mongoose.model("chemistry", Schemamodel);
 const physics = mongoose.model("physics", Schemamodel);
@@ -60,4 +68,4 @@ const mongooseModels = models .reduce((oje, name) => {
   return oje;
 }, {});
  module.exports={Aec,chemistry,physics,computerscience,manAndEnvironment,math,secWeb
-  ,yoga,  statistics,ayurveda,datavalid,digitalliteracie,environment,geologie,mxexcel,quanintychemistrie,smartphonegeoscience,mathproblemsolving,...mongooseModels};
+  ,yoga,  statistics,ayurveda,datavalid,digitalliteracie,environment,geologie,mxexcel,quanintychemistrie,smartphonegeoscience,mathproblemsolving,...mongooseModels,uploadtoken};

@@ -15,6 +15,7 @@ const { namedata, getData, secDatafind, getDatasem2, namedatasem2 } = require(".
 const { viewLink, downloadurl } = require("./fuctionData/urlLink.js");
 const insertData = require("./insertfile/insertData.js");
 const dotenv = require('dotenv');
+const { uploadtoken } = require("./Model.js");
 dotenv.config();
 
 // set ejs-mate as the rendering engine
@@ -88,7 +89,6 @@ const oauth2Client = new google.auth.OAuth2(
   process.env.CLIENT_SECRET,
    link
     // process.env.REDIRECT_URI,
-  
 );
 const SCOPES = ["https://www.googleapis.com/auth/drive.file"];
 app.get("/auth", (req, res) => {
@@ -97,12 +97,14 @@ app.get("/auth", (req, res) => {
   }
   const authUrl = oauth2Client.generateAuthUrl({
     access_type: "offline",
-    //  prompt: 'consent',    
+      prompt: 'consent',    
     scope: SCOPES,
   });
   res.redirect(authUrl);
 });
 app.get("/oauth2callback", async (req, res) => {
+  // Purane token delete kar do (optional)
+  await uploadtoken.deleteMany({});
   const code = req.query.code;
   if (!code) return res.send("No code received");
   try {
@@ -135,7 +137,7 @@ app.post("/upload", upload.single("file"), async (req, res) => {
   const fileMetadata = {
     name: req.file.originalname,
     //test id
-      //parents: ["1y7E4ju-7WFQ3Ose3dXRqfJ0z_iLsJfR4"],// 👈 Folder where file will be uploaded
+    //  parents: ["1y7E4ju-7WFQ3Ose3dXRqfJ0z_iLsJfR4"],// 👈 Folder where file will be uploaded
       //not test real 
     parents: ["1dzzNv8QpZYY7MhLvm4Jn_uQR2ZXF_zRW"],// 👈 Folder where file will be uploaded
   };
@@ -151,7 +153,7 @@ app.post("/upload", upload.single("file"), async (req, res) => {
     fields: "id",
   });
   await insertData(title, `https://drive.google.com/file/d/${response.data.id}/view?usp=sharing`, subject, Semester);
-  res.redirect("/");
+  res.redirect("/upload-page");
   // res.send(`<a href="https://drive.google.com/file/d/${response.data.id}/view" target="_blank">View File</a>`);
 })
 // app.listen(port, () => {
