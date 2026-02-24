@@ -31,7 +31,7 @@ app.get('/', async (req, res) => {
 app.get("/sec/:semester", async (req, res) => {
   await secDatafind();
   let semester = req.params.semester;
-  res.render("secpage/sec.ejs",{semester});
+  res.render("secpage/sec.ejs", { semester });
 })
 app.get("/secChapter", (req, res) => {
   const { title: chapterName, name } = req.query;
@@ -55,9 +55,9 @@ app.get("/semList", async (req, res) => {
 app.get("/chapter/:semester", async (req, res) => {
   let name = req.query.name.toLowerCase();
   let semester = req.params.semester;
-  let data=null;
+  let data = null;
   if (semester.trim() === "First") {
-    data =await namedata(name);
+    data = await namedata(name);
   } else if (semester.trim() === "Second") {
     data = await namedatasem2(name);
   }
@@ -70,7 +70,7 @@ app.get("/allchapter/:semester", (req, res) => {
   let semester = req.params.semester;
   const { title: chapterName, name } = req.query;
   // variable to store link
-  let chapterData=null;
+  let chapterData = null;
   if (semester.trim() === "First") {
     chapterData = namedata(name);
   } else if (semester.trim() === "Second") {
@@ -83,43 +83,61 @@ app.get("/allchapter/:semester", (req, res) => {
   res.render("pdf", { srcLink, downloadLink });
 })
 //file upload 
-  const link="https://notes-for-ug.onrender.com/oauth2callback"
+const link="https://notes-for-ug.onrender.com/oauth2callback"
 const oauth2Client = new google.auth.OAuth2(
   process.env.CLIENT_ID,
   process.env.CLIENT_SECRET,
    link
-    // process.env.REDIRECT_URI,
+ // process.env.REDIRECT_URI,
 );
+let tokenData = null;
+async function tokensData() {
+  tokenData = await uploadtoken.find();
+}
+
 const SCOPES = ["https://www.googleapis.com/auth/drive.file"];
-app.get("/auth", (req, res) => {
-  if (process.env.REFRESH_TOKEN) {
-    return res.redirect("/upload-page");
+app.get("/auth", async (req, res) => {
+  await tokensData();
+  console.log(tokenData);
+  if (Array.isArray(tokenData) && tokenData.length > 0) {
+    const authUrl = oauth2Client.generateAuthUrl({
+      access_type: "offline",
+      scope: SCOPES,
+    });
+    res.redirect(authUrl);
+  } else {
+    // if (process.env.REFRESH_TOKEN) {
+    //   return res.redirect("/upload-page");
+    // }
+    const authUrl = oauth2Client.generateAuthUrl({
+      access_type: "offline",
+      prompt: 'consent',
+      scope: SCOPES,
+    });
+    res.redirect(authUrl);
   }
-  const authUrl = oauth2Client.generateAuthUrl({
-    access_type: "offline",
-      prompt: 'consent',    
-    scope: SCOPES,
-  });
-  res.redirect(authUrl);
 });
 app.get("/oauth2callback", async (req, res) => {
   // Purane token delete kar do (optional)
-  await uploadtoken.deleteMany({});
   const code = req.query.code;
   if (!code) return res.send("No code received");
   try {
     const { tokens } = await oauth2Client.getToken(code);
     oauth2Client.setCredentials(tokens);
-    process.env.REFRESH_TOKEN = tokens.refresh_token;
-    console.log(process.env.REFRESH_TOKEN, tokens.refresh_token);
+    // Naya token save karo
+    if (tokens.refresh_token) {
+      const tokenDoc = await uploadtoken.create({ token: tokens.refresh_token });
+      // console.log("Token saved:", tokenDoc);
+    }
     res.redirect("/upload-page");
   } catch (err) {
     console.error(err);
     res.send("Error retrieving tokens");
   }
 });
-app.get("/upload-page", (req, res) => {
-  if (!process.env.REFRESH_TOKEN) {
+app.get("/upload-page", async (req, res) => {
+  await tokensData();
+  if (Array.isArray(tokenData) && tokenData.length == 0) {
     return res.redirect("/auth");
   }
   res.render("fileupload/upload.ejs");
@@ -133,27 +151,32 @@ app.post("/upload", upload.single("file"), async (req, res) => {
     subject = secSubject;
   }
   if (!req.file) return res.status(400).send("No file uploaded");
-  const drive = google.drive({ version: "v3", auth: oauth2Client });
-  const fileMetadata = {
-    name: req.file.originalname,
-    //test id
-    //  parents: ["1y7E4ju-7WFQ3Ose3dXRqfJ0z_iLsJfR4"],// 👈 Folder where file will be uploaded
+  try {
+    const drive = google.drive({ version: "v3", auth: oauth2Client });
+    const fileMetadata = {
+      name: req.file.originalname,
+      //test id
+     // parents: ["1y7E4ju-7WFQ3Ose3dXRqfJ0z_iLsJfR4"],// 👈 Folder where file will be uploaded
       //not test real 
-    parents: ["1dzzNv8QpZYY7MhLvm4Jn_uQR2ZXF_zRW"],// 👈 Folder where file will be uploaded
-  };
-  const bufferStream = new PassThrough();
-  bufferStream.end(req.file.buffer);
-  const media = {
-    mimeType: req.file.mimetype,
-    body: bufferStream,
-  };
-  const response = await drive.files.create({
-    resource: fileMetadata,
-    media: media,
-    fields: "id",
-  });
-  await insertData(title, `https://drive.google.com/file/d/${response.data.id}/view?usp=sharing`, subject, Semester);
-  res.redirect("/upload-page");
+      parents: ["1dzzNv8QpZYY7MhLvm4Jn_uQR2ZXF_zRW"],// 👈 Folder where file will be uploaded
+    };
+    const bufferStream = new PassThrough();
+    bufferStream.end(req.file.buffer);
+    const media = {
+      mimeType: req.file.mimetype,
+      body: bufferStream,
+    };
+    const response = await drive.files.create({
+      resource: fileMetadata,
+      media: media,
+      fields: "id",
+    });
+    await insertData(title, `https://drive.google.com/file/d/${response.data.id}/view?usp=sharing`, subject, Semester);
+    res.redirect("/upload-page");
+  } catch (error) {
+    console.error("Upload failed:", error);
+    res.redirect("/auto"); // agar error aaye → auto redirect
+  }
   // res.send(`<a href="https://drive.google.com/file/d/${response.data.id}/view" target="_blank">View File</a>`);
 })
 // app.listen(port, () => {
@@ -161,16 +184,16 @@ app.post("/upload", upload.single("file"), async (req, res) => {
 // });
 //check validate title
 app.get("/check-title", async (req, res) => {
-    await getData();
+  await getData();
   await getDatasem2();
   await secDatafind();
   const { subject, title, Semester } = req.query;
   let databack = null;
   // console.log(subject, title, Semester );
-  if (Semester.trim() =="First".trim()) {
+  if (Semester.trim() == "First".trim()) {
     databack = await namedata(subject);
     // console.log("fiest sem ", databack);
-  } else if (Semester.trim() =="Second".trim()) {
+  } else if (Semester.trim() == "Second".trim()) {
     databack = await namedatasem2(subject);
     // console.log("secondsem ", databack);
   }
