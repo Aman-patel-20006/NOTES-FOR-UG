@@ -83,8 +83,8 @@ app.get("/allchapter/:semester", (req, res) => {
   res.render("pdf", { srcLink, downloadLink });
 })
 //file upload 
-// const link="https://notes-for-ug.onrender.com/oauth2callback"
-const link=process.env.REDIRECT_URI;
+ const link="https://notes-for-ug.onrender.com/oauth2callback"
+// const link=process.env.REDIRECT_URI;
 const oauth2Client = new google.auth.OAuth2(
   process.env.CLIENT_ID,
   process.env.CLIENT_SECRET,
