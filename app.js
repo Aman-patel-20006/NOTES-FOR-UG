@@ -83,12 +83,12 @@ app.get("/allchapter/:semester", (req, res) => {
   res.render("pdf", { srcLink, downloadLink });
 })
 //file upload 
-const link="https://notes-for-ug.onrender.com/oauth2callback"
+//const link="https://notes-for-ug.onrender.com/oauth2callback"
 const oauth2Client = new google.auth.OAuth2(
   process.env.CLIENT_ID,
   process.env.CLIENT_SECRET,
-   link
- // process.env.REDIRECT_URI,
+  //  link
+  process.env.REDIRECT_URI,
 );
 let tokenData = null;
 async function tokensData() {
@@ -98,7 +98,7 @@ async function tokensData() {
 const SCOPES = ["https://www.googleapis.com/auth/drive.file"];
 app.get("/auth", async (req, res) => {
   await tokensData();
-  console.log(tokenData);
+  // console.log(tokenData);
   if (Array.isArray(tokenData) && tokenData.length > 0) {
     const authUrl = oauth2Client.generateAuthUrl({
       access_type: "offline",
@@ -156,9 +156,10 @@ app.post("/upload", upload.single("file"), async (req, res) => {
     const fileMetadata = {
       name: req.file.originalname,
       //test id
-     // parents: ["1y7E4ju-7WFQ3Ose3dXRqfJ0z_iLsJfR4"],// 👈 Folder where file will be uploaded
+    //  parents: ["1y7E4ju-7WFQ3Ose3dXRqfJ0z_iLsJfR4"],// 👈 Folder where file will be uploaded
+    parents:[ process.env.PARENTSID]
       //not test real 
-      parents: ["1dzzNv8QpZYY7MhLvm4Jn_uQR2ZXF_zRW"],// 👈 Folder where file will be uploaded
+     // parents: ["1dzzNv8QpZYY7MhLvm4Jn_uQR2ZXF_zRW"],// 👈 Folder where file will be uploaded
     };
     const bufferStream = new PassThrough();
     bufferStream.end(req.file.buffer);

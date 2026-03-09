@@ -1,7 +1,7 @@
 const conect = require("../mongoconect.js");
 const { Aec, chemistry, physics, computerscience, manAndEnvironment, math, secWeb, yoga, statistics, ayurveda,
   datavalid, digitalliteracie, environment, geologie, mxexcel, quanintychemistrie, smartphonegeoscience, mathproblemsolving
-  , Aecsem2, chemistrysem2, physicssem2, computersciencesem2, mathsem2, yogasem2, statisticssem2, ayurvedasem2, environmentsem2, geologiesem2,
+  , Aecsem2, chemistrysem2, physicssem2, computersciencesem2, mathsem2, yogasem2, statisticssem2, ayurvedasem2, geologiesem2,
   earthsciencesem2, zoologysem2, mobileDevelopment, basicsofremoteSensing, computationalMathematics, dataAnalysis, energyConversion, latexTypesetting,
   preservationandManagement, foodPreservatives, instrumentationinChemical, gemology, riskFactors } = require("../Model.js");
 //data define
@@ -30,7 +30,7 @@ computerscienceDatasem2 = null;
 mathDatasem2 = null;
 statisticsDatasem2 = null;
 ayurvedaDatasem2 = null;
-environmentDatasem2 = null;
+// environmentDatasem2 = null;
 geologieDatasem2 = null;
 earthscienceDatasem2 = null;
 zoologyDatasem2 = null;
@@ -132,7 +132,6 @@ async function getDatasem2() {
     yogaDatasem2 = await yogasem2.find().sort({ _id: 1 });
     statisticsDatasem2 = await statisticssem2.find().sort({ _id: 1 });
     ayurvedaDatasem2 = await ayurvedasem2.find().sort({ _id: 1 });
-    environmentDatasem2 = await environmentsem2.find().sort({ _id: 1 });
     geologieDatasem2 = await geologiesem2.find().sort({ _id: 1 });
     earthscienceDatasem2 = await earthsciencesem2.find().sort({ _id: 1 });
     zoologyDatasem2 = await zoologysem2.find().sort({ _id: 1 });
@@ -157,7 +156,7 @@ function namedatasem2(name) {
     case "ayurveda": return ayurvedaDatasem2;
     case "geologie":
     case "geology": return geologieDatasem2;
-    case "environment": return environmentDatasem2;
+    case "environment": return environmentData;
     case "earthscience": return earthscienceDatasem2;
     case "zoology": return zoologyDatasem2;
     case "mobileDevelopment":

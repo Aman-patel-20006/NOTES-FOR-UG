@@ -52,7 +52,7 @@ const models = [
   "yogasem2",
   "statisticssem2",
   "ayurvedasem2",
-  "environmentsem2",
+  // "environmentsem2",
   "geologiesem2",
 "earthsciencesem2",
 "zoologysem2",

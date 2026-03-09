@@ -8,7 +8,6 @@ const { Aec, chemistry, physics, computerscience, manAndEnvironment, math, secWe
   yogasem2,
   statisticssem2,
   ayurvedasem2,
-  environmentsem2,
   geologiesem2,
   earthsciencesem2,
   zoologysem2,
@@ -33,7 +32,6 @@ const models = {
   quanintychemistrie,
   smartphonegeoscience,
   mathproblemsolving,
-
 };
 let models2 = {
   Aec: Aecsem2,
@@ -44,7 +42,7 @@ let models2 = {
   yoga: yogasem2,
   statistics: statisticssem2,
   ayurveda: ayurvedasem2,
-  environment: environmentsem2,
+  environment: environment,
   geologie: geologiesem2,
   earthscience: earthsciencesem2,
   zoology: zoologysem2,
