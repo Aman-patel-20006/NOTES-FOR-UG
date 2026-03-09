@@ -111,4 +111,11 @@ gap:50px;
 .socialMedia-2{
  padding-top: 0;
 }
+.f-smallContainer>hr{
+    width: 100%;
+}
+#contactUs{
+  width: 99%;
+  text-align: center;
+}
 }

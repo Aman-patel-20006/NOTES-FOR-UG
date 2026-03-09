@@ -84,7 +84,6 @@ app.get("/allchapter/:semester", (req, res) => {
 })
 //file upload 
  const link="https://notes-for-ug.onrender.com/oauth2callback"
-// const link=process.env.REDIRECT_URI;
 const oauth2Client = new google.auth.OAuth2(
   process.env.CLIENT_ID,
   process.env.CLIENT_SECRET,
@@ -95,7 +94,6 @@ let tokenData = null;
 async function tokensData() {
   tokenData = await uploadtoken.find();
 }
-
 const SCOPES = ["https://www.googleapis.com/auth/drive.file"];
 app.get("/auth", async (req, res) => {
   await tokensData();
