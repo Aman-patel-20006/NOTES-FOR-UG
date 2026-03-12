@@ -1,0 +1,140 @@
+/* for container big */
+#container {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto;
+  background-color: #f5f7fa;
+  justify-items: center;
+  align-items: center;
+  align-items: stretch;
+  padding-bottom:15px;
+}
+.smallContainer {
+  width: 90%;
+  height: auto;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 1px 0px 5px rgba(0, 0, 0, 0.2);
+  background: white;
+  text-align: center;
+  margin-top: 25px;
+}
+.smallContainer:hover {
+  transform: translateY(-5px);
+  box-shadow: 2px 3px 15px rgba(0, 0, 0, 0.6);
+}
+.smallContainer h1 {
+  color: #1a237e;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.smallContainer #info {
+  display: inline-block;
+  border-radius: 10px;
+  color: black;
+  background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+}
+
+.smallContainer #info:hover {
+  background: linear-gradient(120deg, #f9f9f9, #eef3ff);
+}
+
+.smallContainer h1 {
+  text-shadow: 0 5px 7px rgba(0, 0, 0, 0.2);
+  margin: 4px 0px;
+}
+
+#paper {
+  margin: 8px 0px;
+}
+
+#notes {
+  display: inline-block;
+  margin-top: 5px;
+  color: rgb(231, 27, 27, .6);
+}
+
+#seenotes {
+  margin-top: 12px;
+}
+
+#subject {
+  font-weight: bold;
+  color: #1c2697
+}
+
+.smallContainer:active {
+  background: #f3e5f5
+}
+
+/* 
+PHONE CSS */
+@media(max-width:650px) {
+  /* main container phone style */
+  #container {
+    display: grid;
+    gap: 0;
+    width: 100%;
+    grid-template-columns: repeat(1, 1fr);
+    position: 0px;
+    padding: 0px;
+  }
+  /* small container for all bsc and ba */
+  .smallContainer {
+    height: auto;
+    width: auto;
+    margin: 8px 10px;
+    padding: 12px;
+    overflow-y: auto;
+  }
+
+  /* small cosntainer ka text  */
+  .smallContainer #info {
+    display: inline-block;
+    border-radius: 25px;
+    text-decoration: none;
+    color: black;
+    background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+  }
+
+  .smallContainer #degree,
+  #paper {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  #subject {
+    margin: 4px;
+    padding: 0%;
+  }
+
+  .smallContainer:active {
+    background: #f3e5f5
+  }
+
+  #message {
+    text-align: justify;
+  }
+
+  #notes {
+    color: rgb(231, 27, 27, .6);
+  }
+
+  #seenotes {
+    margin-top: 5px;
+    padding: 0px;
+  }
+}
+
+/* phone par height row or column  */
+@media (min-width:650px) and (max-width:1100px)  {
+  #container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (width>1600px) {
+   #container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

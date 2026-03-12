@@ -186,7 +186,7 @@
     }
 
     /* modile */
-    @media(max-width:500px) {
+    @media(max-width:600px) {
       #subsem {
         display: grid;
         grid-template-rows: repeat(2, 1fr);
@@ -223,3 +223,10 @@
         font-size: medium;
       }
     }
+        @media(max-width:350px) {
+
+      .file-btn {
+        padding: 1vh 2vw;
+        font-size: 3.8vw;
+      }
+        }
