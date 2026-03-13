@@ -36,9 +36,9 @@ app.get("/sec/:semester", async (req, res) => {
 app.get("/secChapter", (req, res) => {
   const { title: chapterName, name } = req.query;
   // variable to store link
-  let chapterData = namedata(name);
+ // let chapterData = namedata(name);
   //view link
-  let srcLink = viewLink(chapterData, chapterName);
+  let srcLink = viewLink(namedata(name), chapterName);
   //download link
   let downloadLink = downloadurl(srcLink);
   res.render("pdf", { srcLink, downloadLink });
@@ -206,4 +206,15 @@ app.get("/check-title", async (req, res) => {
   );
   res.send(exist ? "true" : "false");
 });
+// websites term and codion
+app.get("/legal/:value",async (req,res)=>{
+  let {value}=req.params;
+    await getData();
+ let chapterData= namedata("websiteLegal")
+   // console.log(chapterData);
+  let srcLink = viewLink(chapterData, value);
+  //download link
+  let downloadLink = downloadurl(srcLink);
+  res.render("pdf", { srcLink, downloadLink });
+})
 app.listen(port, '0.0.0.0');

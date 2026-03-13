@@ -3,7 +3,7 @@ const { Aec, chemistry, physics, computerscience, manAndEnvironment, math, secWe
   datavalid, digitalliteracie, environment, geologie, mxexcel, quanintychemistrie, smartphonegeoscience, mathproblemsolving
   , Aecsem2, chemistrysem2, physicssem2, computersciencesem2, mathsem2, yogasem2, statisticssem2, ayurvedasem2, geologiesem2,
   earthsciencesem2, zoologysem2, mobileDevelopment, basicsofremoteSensing, computationalMathematics, dataAnalysis, energyConversion, latexTypesetting,
-  preservationandManagement, foodPreservatives, instrumentationinChemical, gemology, riskFactors } = require("../Model.js");
+  preservationandManagement, foodPreservatives, instrumentationinChemical, gemology, riskFactors,websiteLegal } = require("../Model.js");
 //data define
 let aecdata = null;
 chemistryData = null;
@@ -45,6 +45,7 @@ foodPreservativesData = null;
 instrumentationinChemicalData = null;
 gemologyData = null;
 riskFactorsData = null;
+webLegal=null;
 //to find mongodb dat
 async function getData() {
   try {
@@ -59,6 +60,7 @@ async function getData() {
     datacorrec = await datavalid.find().sort({ _id: 1 });
     environmentData = await environment.find().sort({ _id: 1 });
     geologieData = await geologie.find().sort({ _id: 1 });
+    webLegal=await websiteLegal.find().sort({ _id: 1 })
   } catch (error) {
     console.log(error);
   }
@@ -118,7 +120,7 @@ function namedata(name) {
     case "environment": return environmentData;
     case "mathproblemsolving": return mathsolveData;
     case "ethics in academia and mathematical exploration": return mathsolveData;
-
+    case "websiteLegal":return webLegal;
     default: return datacorrec;
   }
 }

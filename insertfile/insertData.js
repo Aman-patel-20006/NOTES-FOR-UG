@@ -12,7 +12,7 @@ const { Aec, chemistry, physics, computerscience, manAndEnvironment, math, secWe
   earthsciencesem2,
   zoologysem2,
   mobileDevelopment, basicsofremoteSensing, computationalMathematics, dataAnalysis, energyConversion, latexTypesetting,
-  preservationandManagement, foodPreservatives, instrumentationinChemical, gemology, riskFactors } = require("../Model.js");
+  preservationandManagement, foodPreservatives, instrumentationinChemical, gemology, riskFactors,websiteLegal } = require("../Model.js");
 const models = {
   Aec,
   chemistry,
@@ -74,10 +74,24 @@ async function insertData(title, src, subject, Semester) {
     const result = await subjectModel.create({ title, src });
   } catch (err) {
     console.log("Error inserting document:", err);
-    // } finally {
-    //   await mongoose.connection.close();
-    //   console.log("MongoDB connection closed");
   }
 };
-// insertData();
+
+// require("dotenv").config(); 
+//  const url=process.env.URL;
+// function conect(){mongoose.connect(url)
+//    .then(() => console.log("MongoDB Atlas connected successfully!"))
+//   .catch(err => console.error(" Connection error:", err))};
+// conect();
+// async function insertDatawithFile() {
+//   try {
+//     const result = await websiteLegal.create({ title:"privacy_policy", src:"https://drive.google.com/file/d/1jApMMqqODroMLjMjqxGtWtZZek52HCsb/view?usp=sharing" });
+//   } catch (err) {
+//     console.log("Error inserting document:", err);
+//     } finally {
+//       await mongoose.connection.close();
+//       console.log("MongoDB connection closed");
+//   }
+// }
+
 module.exports = insertData;
