@@ -53,7 +53,8 @@ app.get("/semList", async (req, res) => {
   res.render("semester.ejs", { name: name, sem });
 })
 app.get("/chapter/:semester", async (req, res) => {
-  let name = req.query.name.toLocaleLowerCase();
+  let name = (req.query.name || "").toLowerCase();
+  //let name = req.query.name.toLocaleLowerCase();
   let semester = req.params.semester;
   let data = null;
   if (semester.trim() === "First") {
