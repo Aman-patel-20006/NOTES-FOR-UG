@@ -8,20 +8,23 @@ const dotenv = require('dotenv');
 dotenv.config();
 const router = express.Router();
 // OAuth setup
-const credentials = require("../credentials.json");
-const token = require("../token.json"); 
+// const credentials = require("../credentials.json");
+const token = require("../uploadAccessValue.json"); 
 const { insertData, deleteChapter } = require("../insertfile/insertData.js");
 const { namedata, getData, secDatafind, getDatasem2, namedatasem2 } = require("../fuctionData/fuction.js");
 const expressError = require("../expressError.js");
 const { nextTick } = require("process");
-const { client_id, client_secret, redirect_uris } = credentials.installed;
+// const { client_id, client_secret, redirect_uris } = credentials.installed;
+// console.log(process.env.CLIENT_SECRET,process.env.CLIENT_ID,process.env.REDIRECT_URI);
 const oAuth2Client = new google.auth.OAuth2(
-  client_id,
-  client_secret,
+process.env.CLIENT_ID,
+process.env.CLIENT_SECRET,
+  // client_id,
+  // client_secret,
   //change redirect uri for local and production level
   //redirect_uris[0],
   //for production level
-     redirect_uris[1]
+   process.env.REDIRECT_URI
 );
 router.use(express.urlencoded({ extended: true })); // for parsing form data
 oAuth2Client.setCredentials(token);
