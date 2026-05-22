@@ -7,3 +7,4 @@ data/
 .history/
 .auth.js
 .credentials.json
+.uploadAccessValue.json
