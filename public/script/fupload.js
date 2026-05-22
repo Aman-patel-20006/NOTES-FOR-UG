@@ -80,16 +80,25 @@ selectSub.addEventListener('change', () => {
 document.getElementById("form").addEventListener("submit", async function (e) {
   e.preventDefault();
   const namevalid = document.getElementById('name');
-
   const Semester = document.getElementById('SEMESTER').value;
+    // console.dir(selectSec.selectedOptions[0].value);
   let subj = selectSub.selectedOptions[0].value;
-  let subject = (subj === "sec") ? selectSec.selectedOptions[0].value : subj;
+// console.log(subj);
+  let subject = (subj === "sec") ?((Semester=="First")? selectSec.selectedOptions[0].value:secSecondsem.selectedOptions[0].value) : subj;
+    // console.log(subject);
   const title = namevalid.value.trim();
   const res = await fetch(`/check-title?title=${encodeURIComponent(title)}&subject=${encodeURIComponent(subject)}&Semester=${encodeURIComponent(Semester)}`);
   const text = await res.text(); // 👈 fetch text response
   if (text === "true") {
     alert("Chapter name already exists ! Please Change Name Like This [CHAPER NAME Notes-1]");
   } else {
-    this.submit();
+     // Disable button
+    document.getElementById("filesubmitBtn").disabled = true;
+    // Optional: poori screen block
+    document.body.style.pointerEvents = "none";
+    document.body.style.opacity = "0.6";
+    let overlay= document.getElementById("overlay");
+    overlay.style.display = "flex";
+     this.submit();
   }
 });

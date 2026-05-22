@@ -5,61 +5,103 @@ const { Aec, chemistry, physics, computerscience, manAndEnvironment, math, secWe
   physicssem2,
   computersciencesem2,
   mathsem2,
-  yogasem2,
   statisticssem2,
   ayurvedasem2,
   geologiesem2,
   earthsciencesem2,
   zoologysem2,
   mobileDevelopment, basicsofremoteSensing, computationalMathematics, dataAnalysis, energyConversion, latexTypesetting,
-  preservationandManagement, foodPreservatives, instrumentationinChemical, gemology, riskFactors,websiteLegal } = require("../Model.js");
+  preservationandManagement, foodPreservatives, instrumentationinChemical, gemology, riskFactors, websiteLegal } = require("../Model.js");
 const models = {
-  Aec,
+  aec: Aec,
+  Aec:Aec,
   chemistry,
   physics,
   computerscience,
-  manAndEnvironment,
+  "man and environment": manAndEnvironment,
   math,
-  secWeb,
+  "web designing": secWeb,
   yoga,
   statistics,
   ayurveda,
   datavalid,
-  digitalliteracie,
+  "digital literacy": digitalliteracie,
   environment,
   geologie,
-  mxexcel,
-  quanintychemistrie,
-  smartphonegeoscience,
-  mathproblemsolving,
+  "data analysis using excel": mxexcel,
+  "quality control in chemical analysis": quanintychemistrie,
+  "smartphone geosciences": smartphonegeoscience,
+  "ethics in academia and mathematical exploration": mathproblemsolving,
 };
 let models2 = {
   Aec: Aecsem2,
+  aec: Aecsem2,
   chemistry: chemistrysem2,
   physics: physicssem2,
   computerscience: computersciencesem2,
   math: mathsem2,
-  yoga: yogasem2,
+  yoga: yoga,
   statistics: statisticssem2,
   ayurveda: ayurvedasem2,
   environment: environment,
   geologie: geologiesem2,
   earthscience: earthsciencesem2,
   zoology: zoologysem2,
-  mobileDevelopment,
-  basicsofremoteSensing,
-  computationalMathematics,
-  dataAnalysis,
-  energyConversion,
-  latexTypesetting,
-  preservationandManagement,
-  foodPreservatives,
-  instrumentationinChemical,
-gemology,
-  riskFactors
+  "mobile application development": mobileDevelopment,
+  "basics of remote sensing": basicsofremoteSensing,
+  "computational mathematics with sagemath": computationalMathematics,
+  "data analysis using spss": dataAnalysis,
+  "energy conversion and storage for sustainable development": energyConversion,
+  "latex typesetting for beginners": latexTypesetting,
+  "preservation and management of microbial resources": preservationandManagement,
+  "food, preservatives and adulterants": foodPreservatives,
+  "instrumentation in chemical industry": instrumentationinChemical,
+  "gemology": gemology,
+  "risk factors for genetic disorders": riskFactors
 }
-async function insertData(title, src, subject, Semester) {
-  let subjectModel;
+//delete object
+async function deleteChapter(subject, Semester, id, currUserID,admin) {
+  let subjectModel = null;
+  if (Semester.trim() === "First") {
+    subjectModel = models[subject.toLowerCase()];
+  } else if(Semester.trim() === "Second") {
+    subjectModel = models2[subject.toLowerCase()];
+  } else { console.log("not found model"); }
+  // ✅ get actual model from name
+  if (!subjectModel) {
+    console.log("Invalid subject for model:", subject);
+    return {
+        success: false,
+        message: "Please try again some thing internal problem"
+      }
+  }
+  try {
+    let charObject = await subjectModel.findById(id);
+    console.log
+    // if (admin || (charObject.uploadedBy)?.toString() === currUserID.toString() ) {
+if (admin ||String(charObject?.uploadedBy) === String(currUserID)) {
+      let result = await subjectModel.findByIdAndDelete(id);
+        return {
+        success: true,
+        message: "Deletion is success full",
+      }} else {
+      return {
+        success: false,
+        message: "You are not allowed to delete this pdf"
+      }
+    };
+  } catch (err) {
+    console.log("error occured on delete object");
+    console.log(err);
+    return {
+        success: false,
+        message: "Please try again some thing internal problem"
+      }
+  }
+}
+async function insertData(title, src, subject, Semester, userId) {
+  let subjectModel = null;
+  // console.log(title, src, subject, Semester);
   if (Semester.trim() === "First") {
     subjectModel = models[subject];
   } else if (Semester.trim() === "Second") {
@@ -71,7 +113,8 @@ async function insertData(title, src, subject, Semester) {
     return;
   }
   try {
-    const result = await subjectModel.create({ title, src });
+    const result = await subjectModel.create({ title, src, uploadedBy: userId });
+    // console.log(result);
   } catch (err) {
     console.log("Error inserting document:", err);
   }
@@ -94,4 +137,4 @@ async function insertData(title, src, subject, Semester) {
 //   }
 // }
 
-module.exports = insertData;
+module.exports = { insertData, deleteChapter };

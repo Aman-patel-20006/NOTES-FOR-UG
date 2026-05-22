@@ -7,23 +7,28 @@ const Schemamodel = new mongoose.Schema({
   },
   src:  {
     type: String,
-    required: true
+    required: false
+  },
+    uploadedBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "userPass",
   }
 });
 
-let Schemamodelupload = new mongoose.Schema({
-  token: {
-    type: String,
-    required: true
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-    expires: 600 // document auto-deletes after 300 sec (5 min)
-  }
-});
+// let Schemamodelupload = new mongoose.Schema({
+//   token: {
+//     type: String,
+//     required: true
+//   },
+//   createdAt: {
+//     type: Date,
+//     default: Date.now,
+//     expires: 600 // document auto-deletes after 300 sec (5 min)
+//   },
+  
+// });
 //upload model
-let uploadtoken=mongoose.model("uploadtoke",Schemamodelupload)
+// let uploadtoken=mongoose.model("uploadtoke",Schemamodelupload)
 const Aec = mongoose.model("Aec", Schemamodel);
 const chemistry = mongoose.model("chemistry", Schemamodel);
 const physics = mongoose.model("physics", Schemamodel);
@@ -52,7 +57,6 @@ const models = [
   "yogasem2",
   "statisticssem2",
   "ayurvedasem2",
-  // "environmentsem2",
   "geologiesem2",
 "earthsciencesem2",
 "zoologysem2",
@@ -72,5 +76,6 @@ const mongooseModels = models .reduce((oje, name) => {
   oje[name] = mongoose.model(name, Schemamodel);
   return oje;
 }, {});
+///login model schema
  module.exports={Aec,chemistry,physics,computerscience,manAndEnvironment,math,secWeb
-  ,yoga,  statistics,ayurveda,datavalid,digitalliteracie,environment,geologie,mxexcel,quanintychemistrie,smartphonegeoscience,mathproblemsolving,...mongooseModels,uploadtoken,websiteLegal};
+  ,yoga,  statistics,ayurveda,datavalid,digitalliteracie,environment,geologie,mxexcel,quanintychemistrie,smartphonegeoscience,mathproblemsolving,...mongooseModels,websiteLegal};

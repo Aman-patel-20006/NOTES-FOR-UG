@@ -1,0 +1,50 @@
+<% layout("layoutAll/layout.ejs") -%>
+  <div id="loginMiandiv">
+    <div class="card">
+
+      <div class="brand">
+        <h1>Welcome</h1>
+        <p>Sign in to your account</p>
+      </div>
+
+      <!-- ✅ FORM START -->
+      <form action="/singup" method="post" onsubmit="return checkPassword()">
+        <div class="field">
+          <label>Username</label>
+          <div class="input-wrap">
+            <input type="text" name="username" placeholder="Enter username" required>
+          </div>
+        </div>
+        <div class="field">
+          <label>Major subject</label>
+          <div class="input-wrap">
+            <input type="text" name="majorsubject" placeholder="Enter majorSubject" required>
+          </div>
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <div class="input-wrap">
+            <input type="text" name="email" placeholder="Enter username" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="passwordinput">Password</label>
+          <div class="input-wrap">
+            <input type="password" id="passwordinput" name="password" placeholder="Enter password" required>
+            <!-- ✅ FIX: type="button" -->
+            <button type="button" class="toggle-pw" onclick="togglePasswordLoginAndsignup()">&#128065;</button>
+          </div>
+        </div>
+
+        <!-- ✅ BUTTON INSIDE FORM -->
+        <button id="signup-btn"  type="submit">Sign in</button>
+
+      </form>
+      <!-- ✅ FORM END -->
+
+      <p class="signup">
+        Do have a account <a href="/loginform">Login</a>
+      </p>
+    </div>
+  </div>

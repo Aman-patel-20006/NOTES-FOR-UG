@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +8,7 @@
   <meta name="description"
     content="Free UG Notes and Study Material for C Language, Physics, Math, and more. Easy-to-understand notes, books, and tutorials for college students.">
   <meta name="google-site-verification" content="EGfF7a79MJ_Q2Xt1xQCqLXN-IxHsfM9d6FB4aC6gVLc" />
-
+ 
   <!-- CSS -->
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/bodyPart.css">
@@ -19,6 +18,7 @@
   <link rel="stylesheet" href="/css/sec.css">
   <link rel="stylesheet" href="/css/fupload.css">
   <link rel="stylesheet" href="/css/footer.css">
+   <link rel="stylesheet" href="/css/loingAndsignup.css">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,47 +51,11 @@
     </section>
   </main>
   <footer>
-    <div id="f-container">
-      <div id="f-firstContainer">
-        <div class="f-smallContainer" id="NotesForUg">
-          <h3><b>Notes for ug</b></h3>
-          <hr>
-          <p>free notes for university student </p>
-          <p>Built with Node.js, Express & MongoDB.</p>
-          <p>Helping students learn better every day.</p>
-        </div>
-        <div class="f-smallContainer">
-          <h3><b>Legal</b></h3>
-          <hr>
-          <p><a href="/legal/privacy_policy" target="_blank">Privacy Policy</a></p>
-          <p><a href="/legal/TermsandConditions" target="_blank">Terms & Conditions</a></p>
-          <p><a href="/legal/Disclaimer" target="_blank">Disclaimer</a></p>
-        </div>
-        <hr>
-        <div class="f-smallContainer">
-          <h3><b>Contact Us</b></h3>
-          <hr>
-          <div id="mediaMainContainer">
-            <span class="socialMedia"> <a href="https://github.com/Aman-patel-20006"> <i
-                  class="fa-brands fa-github"></i></a><a href="mailto:ap9363530@gmail.com" target="_blank"> <i
-                  class="fa-solid fa-envelope"></i></a></span>
-            <span class="socialMedia socialMedia-2"><a href="https://www.linkedin.com/in/aman-patel-b20478369/"
-                target="_blank"><i class="fa-brands fa-linkedin"></i></a> <a
-                href="https://www.instagram.com/aman_05_2006/" target="_blank"><i
-                  class="fa-brands fa-instagram"></i></a></span>
-          </div>
-        </div>
-      </div>
-      <hr>
-      <div id="f-secondContainer">
-        <div class="f-smallContainer">
-          <p>&#169; 2026 Notes for UG — All Rights Reserved</p>
-          <p>Made with <span id="heart" style="color: rgb(241, 4, 44);">&hearts;</span> by a BSc Computer
-            Science Student (BHU)</p>
-        </div>
-      </div>
-    </div>
+      <%- include('../template/footer') %>
   </footer>
+  <script src="script/reload.js"></script>
+  <script src="script/fupload.js"></script>
+<script src="script/loginAndsignup.js"></script>
 </body>
 
 </html>

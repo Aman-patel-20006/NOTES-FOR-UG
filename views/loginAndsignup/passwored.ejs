@@ -1,0 +1,27 @@
+<% layout("layoutAll/layout.ejs") -%>
+<div id="passwordUpadteMiandiv">
+      <div class="card">
+        <div class="brand">
+          <h1>Change Password</h1>
+        <!-- ✅ FORM START -->
+      <form action="/passwordUpadte" method="post" onsubmit="return checkPasswordSame();">
+           <input type="hidden" name="email" value=<%= email %>>
+  <div class="field">
+    <label for="password1">Enter Password</label>
+    <div class="input-wrap">
+      <input type="text" id="password1" name="password1" placeholder="Enter Password" required>
+    </div>
+  </div>
+
+  <div class="field">
+    <label for="password2">Confirm Password</label>
+    <div class="input-wrap">
+      <input type="password" id="password2" name="password2" placeholder="Confirm Password" required>
+      <button type="button" class="toggle-pw" onclick="togglePassword()">&#128065;</button>
+    </div>
+  </div>
+  <button id="PasswordsUpadate-btn" type="submit">Submit</button>
+</form>
+      </div>
+</div>
+   

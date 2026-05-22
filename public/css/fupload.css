@@ -9,7 +9,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 92vh;
+      height: 81vh;
       background-color: #f0f0f0;
       font-family: Arial, sans-serif;
     }
@@ -100,7 +100,7 @@
       transform: scale(1.04);
     }
 
-    button {
+    #filesubmitBtn{
       padding: 0.58rem 1.8rem;
       border: none;
       border-radius: 1rem;
@@ -111,7 +111,7 @@
       transition: 0.4s;
     }
 
-    button:hover {
+     #filesubmitBtn:hover {
       background-color: rgb(121, 33, 33);
       color: rgb(255, 186, 101);
       transform: scale(1.05);

@@ -11,7 +11,6 @@ function viewLink(chapterData,chapterName){
   };
   const first = srcLink.indexOf("/view");
     return srcLink.slice(0, first).concat("/preview");
-
 }
 
 function downloadurl(srcLink){

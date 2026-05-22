@@ -5,7 +5,7 @@
         <h2 id="captext"> SUBMIT CHAPTER FILE WITH NAME</h2>
         <div id="subsem">
           <select name="subject" id="SUBJECT" required>
-            <option  value="" disabled selected>CHOOSE SUBJECT </option>
+            <option value="" disabled selected>CHOOSE SUBJECT </option>
             <option value="computerscience">Computer Science</option>
             <option value="physics"> Physics</option>
             <option value="chemistry"> Chemistry</option>
@@ -18,7 +18,7 @@
             <option value="environment">EVS(Environment)</option>
             <option value="yoga">Yoga</option>
           </select>
-          <select name="Semester" id="SEMESTER" required >
+          <select name="Semester" id="SEMESTER" required>
             <option value="" disabled selected>CHOOSE SEMESTER</option>
             <option value="First">First</option>
             <option value="Second"> Second </option>
@@ -27,31 +27,34 @@
             <option disabled>FIVETH</option>
             <option disabled>SIXTH</option>
           </select>
-                    <select name="secSubject"  class="sec" id="secSecondsem" required>
+          <select name="secSubject" class="sec" id="secSecondsem" disabled required>
             <option value="" disabled selected>CHOOSE SEC SECOND SEM SUBJECT</option>
-            <option value="mobileDevelopment">Mobile Application Development</option>
-            <option value="basicsofremoteSensing">Basics of Remote Sensing</option>
-            <option value="computationalMathematics">Computational Mathematics with SageMath</option>
-            <option value="dataAnalysis">Data Analysis using SPSS</option>
-            <option value="energyConversion">Energy Conversion and Storage for Sustainable Development</option>
-            <option value="latexTypesetting">LaTeX Typesetting for Beginners</option>
-            <option value="preservationandManagement">Preservation and management of Microbial Resources</option>
-            <option value="foodPreservatives">Food, Preservatives and Adulterants</option>
-            <option value="instrumentationinChemical">Instrumentation in Chemical Industry</option>
+            <option value="mobile application development">Mobile Application Development</option>
+            <option value="basics of remote sensing">Basics of Remote Sensing</option>
+            <option value="computational mathematics with sagemath">Computational Mathematics with SageMath</option>
+            <option value="data analysis using spss">Data Analysis using SPSS</option>
+            <option value="energy conversion and storage for sustainable development">Energy Conversion and Storage for
+              Sustainable Development</option>
+            <option value="latex typesetting for beginners">LaTeX Typesetting for Beginners</option>
+            <option value="preservation and management of microbial resources">Preservation and management of Microbial
+              Resources</option>
+            <option value="food, preservatives and adulterants">Food, Preservatives and Adulterants</option>
+            <option value="instrumentation in chemical industry">Instrumentation in Chemical Industry</option>
             <option value="gemology">Gemology</option>
-            <option value="riskFactors">Risk Factors for Genetic Disorders</option>
+            <option value="risk factors for genetic disorders">Risk Factors for Genetic Disorders</option>
           </select>
-          <select name="secSubject" id="secFirstsem" class="sec" required>
-          <option value="" disabled selected>CHOOSE SEC SUBJECT</option>
-          <option value="secWeb">Web designing</option>
-          <option value="manAndEnvironment">Man And Environment</option>
-          <option value="digitalliteracie">Digital Literacie</option>
-          <option value="mxexcel">Data Analysis using Excel</option>
-          <option value="smartphonegeoscience">Smart Phonegeo Science</option>
-          <option value="quanintychemistrie">Quality Control and Chemistry Analysis</option>
-          <option value="mathproblemsolving">Ethics in Academia and Mathematics Exploration</option>
-        </select>
-        </div> 
+          <select name="secSubject" id="secFirstsem" disabled  class="sec" required>
+            <option value="" disabled selected>CHOOSE SEC SUBJECT</option>
+            <option value="web designing">Web designing</option>
+            <option value="man and environment">Man And Environment</option>
+            <option value="digital literacy">Digital Literacie</option>
+            <option value="data analysis using excel">Data Analysis using Excel</option>
+            <option value="smartphone geosciences">Smart Phonegeo Science</option>
+            <option value="quality control in chemical analysis">Quality Control and Chemistry Analysis</option>
+            <option value="ethics in academia and mathematical exploration">Ethics in Academia and Mathematics
+              Exploration</option>
+                   </select>
+        </div>
         <label for="name" id="namelable">ENTER NAME OF CHAPTER:</label>
         <input type="text" id="name" name="title" title="PUT SUBJECT NAME" placeholder="ENTER CHAPTER NAME" required>
         <label>CHOOSE FILE TO UPLOAD:</label>
@@ -60,8 +63,34 @@
           <label class="file-btn" for="fileInput">Choose File</label>
           <input type="file" name="file" id="fileInput" id="choosefile" accept=".jpg,.pdf" required>
         </div>
-        <button type="submit">SUBMIT</button>
+        <button type="submit" id="filesubmitBtn" >SUBMIT</button>
       </form>
     </div>
-    <script src="script/fupload.js"></script>
   </div>
+<div id="overlay" style="
+  display:none;
+  position:fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+  color: white;
+  background:rgba(0,0,0,0.5);
+  font-size:30px;
+  justify-content:center;
+  align-items:center;
+">
+  Uploading file.....
+</div>
+  <!-- <div id="overlay" style="
+  display:flex;
+  position:fixed;
+    width:100%; height:100%;
+  top:0; left:0;
+
+  background:rgba(0,0,0,0.5);
+ 
+  font-size:30px;
+  justify-content:center;
+  align-items:center;
+"> -->
+  <!-- Moving line -->
+ 

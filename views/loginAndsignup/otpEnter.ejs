@@ -1,0 +1,26 @@
+<% layout("layoutAll/layout.ejs") -%>
+  <div id="loginMiandiv">
+    <div class="card">
+      <div class="brand">
+        <h1>PLEASE ENTER YOUR OTP WHICH IS SENT TO YOUR EMAIL</h1>
+      </div>
+      <!-- ✅ FORM START -->
+      <form action="/otpCheck" method="post">
+        <div class="field">
+          <label>OTP</label>
+          <div class="input-wrap">
+            <input type="hidden" name="email" value=<%=email %>>
+            <input type="text" name="otp" placeholder="Enter OTP" required>
+          </div>
+        </div>
+        <% if (typeof error !=="undefined" && error) { %>
+          <h4 id="backendError">
+            <%= error %>
+          </h4>
+          <% } %>
+            <!-- ✅ BUTTON INSIDE FORM -->
+            <button id="opt-btn" type="submit">SUBMIT</button>
+      </form>
+      <a href="/forgetPassword" onclick="return confirmDiv('Are you sure you want to resend the OTP?');" id="resendOtp">RESEND OTP</a>
+    </div>
+  </div>

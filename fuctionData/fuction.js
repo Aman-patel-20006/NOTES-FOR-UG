@@ -1,9 +1,11 @@
 const conect = require("../mongoconect.js");
+const expressError=require("../expressError.js");
 const { Aec, chemistry, physics, computerscience, manAndEnvironment, math, secWeb, yoga, statistics, ayurveda,
   datavalid, digitalliteracie, environment, geologie, mxexcel, quanintychemistrie, smartphonegeoscience, mathproblemsolving
   , Aecsem2, chemistrysem2, physicssem2, computersciencesem2, mathsem2, yogasem2, statisticssem2, ayurvedasem2, geologiesem2,
   earthsciencesem2, zoologysem2, mobileDevelopment, basicsofremoteSensing, computationalMathematics, dataAnalysis, energyConversion, latexTypesetting,
   preservationandManagement, foodPreservatives, instrumentationinChemical, gemology, riskFactors,websiteLegal } = require("../Model.js");
+const ExpressError = require("../expressError.js");
 //data define
 let aecdata = null;
 chemistryData = null;
@@ -49,18 +51,18 @@ webLegal=null;
 //to find mongodb dat
 async function getData() {
   try {
-    aecdata = await Aec.find().sort({ _id: 1 });
-    chemistryData = await chemistry.find().sort({ _id: 1 });
-    csData = await computerscience.find().sort({ _id: 1 });
-    phydata = await physics.find().sort({ _id: 1 });
-    mathData = await math.find().sort({ _id: 1 });
-    yogaData = await yoga.find().sort({ _id: 1 });
-    staticdata = await statistics.find().sort({ _id: 1 });
-    ayorData = await ayurveda.find().sort({ _id: 1 });
-    datacorrec = await datavalid.find().sort({ _id: 1 });
-    environmentData = await environment.find().sort({ _id: 1 });
-    geologieData = await geologie.find().sort({ _id: 1 });
-    webLegal=await websiteLegal.find().sort({ _id: 1 })
+    aecdata = await Aec.find().sort({ _id: 1 }).populate("uploadedBy");
+    chemistryData = await chemistry.find().sort({ _id: 1 }).populate("uploadedBy");
+    csData = await computerscience.find().sort({ _id: 1 }).populate("uploadedBy");
+    phydata = await physics.find().sort({ _id: 1 }).populate("uploadedBy");
+    mathData = await math.find().sort({ _id: 1 }).populate("uploadedBy");
+    yogaData = await yoga.find().sort({ _id: 1 }).populate("uploadedBy");
+    staticdata = await statistics.find().sort({ _id: 1 }).populate("uploadedBy");
+    ayorData = await ayurveda.find().sort({ _id: 1 }).populate("uploadedBy");
+    datacorrec = await datavalid.find().sort({ _id: 1 }).populate("uploadedBy");
+    environmentData = await environment.find().sort({ _id: 1 }).populate("uploadedBy");
+    geologieData = await geologie.find().sort({ _id: 1 }).populate("uploadedBy");
+    webLegal=await websiteLegal.find().sort({ _id: 1 }).populate("uploadedBy")
   } catch (error) {
     console.log(error);
   }
@@ -68,26 +70,27 @@ async function getData() {
 
 async function secDatafind() {
   try {
-    digitalData = await digitalliteracie.find().sort({ _id: 1 });
-    webData = await secWeb.find().sort({ _id: 1 });
-    manData = await manAndEnvironment.find().sort({ _id: 1 });
-    mxexcelData = await mxexcel.find().sort({ _id: 1 });
-    quanintychemistrieData = await quanintychemistrie.find().sort({ _id: 1 });
-    smartphonegeoscienceData = await smartphonegeoscience.find().sort({ _id: 1 });
-    mathsolveData = await mathproblemsolving.find().sort({ _id: 1 });
-    mobileDevelopmentData = await mobileDevelopment.find().sort({ _id: 1 });
-    basicsofremoteSensingData = await basicsofremoteSensing.find().sort({ _id: 1 });
-    computationalMathematicsData = await computationalMathematics.find().sort({ _id: 1 });
-    dataAnalysisData = await dataAnalysis.find().sort({ _id: 1 });
-    energyConversionData = await energyConversion.find().sort({ _id: 1 });
-    latexTypesettingData = await latexTypesetting.find().sort({ _id: 1 });
-    preservationandManagementData = await preservationandManagement.find().sort({ _id: 1 });
-    foodPreservativesData = await foodPreservatives.find().sort({ _id: 1 });
-    instrumentationinChemicalData = await instrumentationinChemical.find().sort({ _id: 1 });
-    gemologyData = await gemology.find().sort({ _id: 1 });
-    riskFactorsData = await riskFactors.find().sort({ _id: 1 });
+    digitalData = await digitalliteracie.find().sort({ _id: 1 }).populate("uploadedBy");
+    webData = await secWeb.find().sort({ _id: 1 }).populate("uploadedBy");
+    manData = await manAndEnvironment.find().sort({ _id: 1 }).populate("uploadedBy");
+    mxexcelData = await mxexcel.find().sort({ _id: 1 }).populate("uploadedBy");
+    quanintychemistrieData = await quanintychemistrie.find().sort({ _id: 1 }).populate("uploadedBy");
+    smartphonegeoscienceData = await smartphonegeoscience.find().sort({ _id: 1 }).populate("uploadedBy");
+    mathsolveData = await mathproblemsolving.find().sort({ _id: 1 }).populate("uploadedBy");
+    mobileDevelopmentData = await mobileDevelopment.find().sort({ _id: 1 }).populate("uploadedBy");
+    basicsofremoteSensingData = await basicsofremoteSensing.find().sort({ _id: 1 }).populate("uploadedBy");
+    computationalMathematicsData = await computationalMathematics.find().sort({ _id: 1 }).populate("uploadedBy");
+    dataAnalysisData = await dataAnalysis.find().sort({ _id: 1 }).populate("uploadedBy");
+    energyConversionData = await energyConversion.find().sort({ _id: 1 }).populate("uploadedBy");
+    latexTypesettingData = await latexTypesetting.find().sort({ _id: 1 }).populate("uploadedBy");
+    preservationandManagementData = await preservationandManagement.find().sort({ _id: 1 }).populate("uploadedBy");
+    foodPreservativesData = await foodPreservatives.find().sort({ _id: 1 }).populate("uploadedBy");
+    instrumentationinChemicalData = await instrumentationinChemical.find().sort({ _id: 1 }).populate("uploadedBy");
+    gemologyData = await gemology.find().sort({ _id: 1 }).populate("uploadedBy");
+    riskFactorsData = await riskFactors.find().sort({ _id: 1 }).populate("uploadedBy");
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.error("Error fetching sec data:", error);
+      throw new ExpressError("Please try again later internal server error", 500);
   }
 }
 function namedata(name) {
@@ -95,13 +98,13 @@ function namedata(name) {
     case "computer":
     case "computerscience": return csData;
     case "physics": return phydata;
-    case "Aec":
+    case "Aec":return aecdata;
     case "aec": return aecdata;
     case "statistics": return staticdata;
     case "mathematics":
     case "math": return mathData;
     case "yoga": return yogaData;
-    case "web designing":
+    case "web designing":return webData;
     case "secWeb": return webData;
     case "manAndEnvironment":
     case "man and environment": return manData;
@@ -121,33 +124,35 @@ function namedata(name) {
     case "mathproblemsolving": return mathsolveData;
     case "ethics in academia and mathematical exploration": return mathsolveData;
     case "websiteLegal":return webLegal;
+    // case "comingSoon":return datacorrec;
     default: return datacorrec;
   }
 }
 async function getDatasem2() {
   try {
-    AecDatasem2 = await Aecsem2.find().sort({ _id: 1 });
-    chemistryDatasem2 = await chemistrysem2.find().sort({ _id: 1 });
-    physicsDatasem2 = await physicssem2.find().sort({ _id: 1 });
-    computerscienceDatasem2 = await computersciencesem2.find().sort({ _id: 1 });
-    mathDatasem2 = await mathsem2.find().sort({ _id: 1 });
-    yogaDatasem2 = await yogasem2.find().sort({ _id: 1 });
-    statisticsDatasem2 = await statisticssem2.find().sort({ _id: 1 });
-    ayurvedaDatasem2 = await ayurvedasem2.find().sort({ _id: 1 });
-    geologieDatasem2 = await geologiesem2.find().sort({ _id: 1 });
-    earthscienceDatasem2 = await earthsciencesem2.find().sort({ _id: 1 });
-    zoologyDatasem2 = await zoologysem2.find().sort({ _id: 1 });
+    AecDatasem2 = await Aecsem2.find().sort({ _id: 1 }).populate("uploadedBy");
+    chemistryDatasem2 = await chemistrysem2.find().sort({ _id: 1 }).populate("uploadedBy");
+    physicsDatasem2 = await physicssem2.find().sort({ _id: 1 }).populate("uploadedBy");
+    computerscienceDatasem2 = await computersciencesem2.find().sort({ _id: 1 }).populate("uploadedBy");
+    mathDatasem2 = await mathsem2.find().sort({ _id: 1 }).populate("uploadedBy");
+    yogaDatasem2 = await yogasem2.find().sort({ _id: 1 }).populate("uploadedBy");
+    statisticsDatasem2 = await statisticssem2.find().sort({ _id: 1 }).populate("uploadedBy");
+    ayurvedaDatasem2 = await ayurvedasem2.find().sort({ _id: 1 }).populate("uploadedBy");
+    geologieDatasem2 = await geologiesem2.find().sort({ _id: 1 }).populate("uploadedBy");
+    earthscienceDatasem2 = await earthsciencesem2.find().sort({ _id: 1 }).populate("uploadedBy");
+    zoologyDatasem2 = await zoologysem2.find().sort({ _id: 1 }).populate("uploadedBy");
   } catch (er) {
-    console.log(er);
+       console.error("Error fetching sec data:", error);
+      throw new ExpressError("Please try again later internal server error", 500);
   }
 }
 function namedatasem2(name) {
-  // console.log("name is",name);
+  //  console.log("name is",name);
   switch (name) {
     case "computer":
     case "computerscience": return computerscienceDatasem2;
     case "physics": return physicsDatasem2;
-    case "Aec":
+    case "Aec":return AecDatasem2;
     case "aec": return AecDatasem2;
     //case "static":return statisticsDatasem2;
     case "statistics": return statisticsDatasem2;
