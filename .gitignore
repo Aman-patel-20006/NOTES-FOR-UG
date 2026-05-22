@@ -1,10 +1,9 @@
 # Node modules folder
 node_modules/
-
 # Environment variables file
 .env
 data/
 .history/
 .auth.js
-.credentials.json
-.uploadAccessValue.json
+credentials.json
+uploadAccessValue.json
