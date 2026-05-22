@@ -27,7 +27,8 @@ router.use(session({
   resave: false,
   saveUninitialized: false,
   store: MongoStore.create({
-    mongoUrl: "mongodb://localhost:27017/subject",
+    // mongoUrl: "mongodb://localhost:27017/subject",
+    mongoUrl: process.env.URL,
     collectionName: "sessions"
   }),
   cookie: { maxAge: 3 * 24 * 60 * 60 * 1000 }
