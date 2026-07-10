@@ -48,6 +48,7 @@ const quanintychemistrie=mongoose.model("quanintychemistrie",Schemamodel);
 const smartphonegeoscience=mongoose.model("smartphonegeoscience",Schemamodel);
 const mathproblemsolving=mongoose.model("mathproblemsolving",Schemamodel);
 const websiteLegal=mongoose.model("websiteLegal",Schemamodel);
+const md=mongoose.model("md",Schemamodel);
 const models = [
   "Aecsem2",
   "chemistrysem2",
@@ -78,4 +79,4 @@ const mongooseModels = models .reduce((oje, name) => {
 }, {});
 ///login model schema
  module.exports={Aec,chemistry,physics,computerscience,manAndEnvironment,math,secWeb
-  ,yoga,  statistics,ayurveda,datavalid,digitalliteracie,environment,geologie,mxexcel,quanintychemistrie,smartphonegeoscience,mathproblemsolving,...mongooseModels,websiteLegal};
+  ,yoga,  statistics,ayurveda,datavalid,digitalliteracie,environment,geologie,mxexcel,quanintychemistrie,smartphonegeoscience,mathproblemsolving,...mongooseModels,websiteLegal,md};

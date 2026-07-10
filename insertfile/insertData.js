@@ -11,7 +11,7 @@ const { Aec, chemistry, physics, computerscience, manAndEnvironment, math, secWe
   earthsciencesem2,
   zoologysem2,
   mobileDevelopment, basicsofremoteSensing, computationalMathematics, dataAnalysis, energyConversion, latexTypesetting,
-  preservationandManagement, foodPreservatives, instrumentationinChemical, gemology, riskFactors, websiteLegal } = require("../Model.js");
+  preservationandManagement, foodPreservatives, instrumentationinChemical, gemology, riskFactors, websiteLegal,md } = require("../Model.js");
 const models = {
   aec: Aec,
   Aec:Aec,
@@ -32,6 +32,7 @@ const models = {
   "quality control in chemical analysis": quanintychemistrie,
   "smartphone geosciences": smartphonegeoscience,
   "ethics in academia and mathematical exploration": mathproblemsolving,
+  md
 };
 let models2 = {
   Aec: Aecsem2,
@@ -57,7 +58,8 @@ let models2 = {
   "food, preservatives and adulterants": foodPreservatives,
   "instrumentation in chemical industry": instrumentationinChemical,
   "gemology": gemology,
-  "risk factors for genetic disorders": riskFactors
+  "risk factors for genetic disorders": riskFactors,
+  md
 }
 //delete object
 async function deleteChapter(subject, Semester, id, currUserID,admin) {

@@ -4,7 +4,7 @@ const { Aec, chemistry, physics, computerscience, manAndEnvironment, math, secWe
   datavalid, digitalliteracie, environment, geologie, mxexcel, quanintychemistrie, smartphonegeoscience, mathproblemsolving
   , Aecsem2, chemistrysem2, physicssem2, computersciencesem2, mathsem2, yogasem2, statisticssem2, ayurvedasem2, geologiesem2,
   earthsciencesem2, zoologysem2, mobileDevelopment, basicsofremoteSensing, computationalMathematics, dataAnalysis, energyConversion, latexTypesetting,
-  preservationandManagement, foodPreservatives, instrumentationinChemical, gemology, riskFactors,websiteLegal } = require("../Model.js");
+  preservationandManagement, foodPreservatives, instrumentationinChemical, gemology, riskFactors,websiteLegal,md } = require("../Model.js");
 const ExpressError = require("../expressError.js");
 //data define
 let aecdata = null;
@@ -48,6 +48,7 @@ instrumentationinChemicalData = null;
 gemologyData = null;
 riskFactorsData = null;
 webLegal=null;
+ mdvalue=null;
 //to find mongodb dat
 async function getData() {
   try {
@@ -62,7 +63,8 @@ async function getData() {
     datacorrec = await datavalid.find().sort({ _id: 1 }).populate("uploadedBy");
     environmentData = await environment.find().sort({ _id: 1 }).populate("uploadedBy");
     geologieData = await geologie.find().sort({ _id: 1 }).populate("uploadedBy");
-    webLegal=await websiteLegal.find().sort({ _id: 1 }).populate("uploadedBy")
+    webLegal=await websiteLegal.find().sort({ _id: 1 }).populate("uploadedBy");
+    mdvalue=await md.find().sort({ _id: 1 }).populate("uploadedBy");
   } catch (error) {
     console.log(error);
   }
@@ -88,6 +90,7 @@ async function secDatafind() {
     instrumentationinChemicalData = await instrumentationinChemical.find().sort({ _id: 1 }).populate("uploadedBy");
     gemologyData = await gemology.find().sort({ _id: 1 }).populate("uploadedBy");
     riskFactorsData = await riskFactors.find().sort({ _id: 1 }).populate("uploadedBy");
+    
   } catch (error) {
     console.error("Error fetching sec data:", error);
       throw new ExpressError("Please try again later internal server error", 500);
@@ -124,6 +127,7 @@ function namedata(name) {
     case "mathproblemsolving": return mathsolveData;
     case "ethics in academia and mathematical exploration": return mathsolveData;
     case "websiteLegal":return webLegal;
+    case "md":return mdvalue;
     // case "comingSoon":return datacorrec;
     default: return datacorrec;
   }
@@ -187,6 +191,7 @@ function namedatasem2(name) {
     case "gemology": return gemologyData;
     case "riskFactors":
     case "risk factors for genetic disorders": return riskFactorsData;
+    case "md":return mdvalue;
     default: return datacorrec;
   }
 }
