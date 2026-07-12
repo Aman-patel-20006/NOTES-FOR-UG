@@ -1,10 +1,10 @@
 const conect = require("../mongoconect.js");
-const expressError=require("../expressError.js");
+const expressError = require("../expressError.js");
 const { Aec, chemistry, physics, computerscience, manAndEnvironment, math, secWeb, yoga, statistics, ayurveda,
   datavalid, digitalliteracie, environment, geologie, mxexcel, quanintychemistrie, smartphonegeoscience, mathproblemsolving
   , Aecsem2, chemistrysem2, physicssem2, computersciencesem2, mathsem2, yogasem2, statisticssem2, ayurvedasem2, geologiesem2,
   earthsciencesem2, zoologysem2, mobileDevelopment, basicsofremoteSensing, computationalMathematics, dataAnalysis, energyConversion, latexTypesetting,
-  preservationandManagement, foodPreservatives, instrumentationinChemical, gemology, riskFactors,websiteLegal,md } = require("../Model.js");
+  preservationandManagement, foodPreservatives, instrumentationinChemical, gemology, riskFactors, websiteLegal, md, mdsem2 } = require("../Model.js");
 const ExpressError = require("../expressError.js");
 //data define
 let aecdata = null;
@@ -47,8 +47,9 @@ foodPreservativesData = null;
 instrumentationinChemicalData = null;
 gemologyData = null;
 riskFactorsData = null;
-webLegal=null;
- mdvalue=null;
+webLegal = null;
+mdvalue = null;
+mdsem2value = null;
 //to find mongodb dat
 async function getData() {
   try {
@@ -63,8 +64,8 @@ async function getData() {
     datacorrec = await datavalid.find().sort({ _id: 1 }).populate("uploadedBy");
     environmentData = await environment.find().sort({ _id: 1 }).populate("uploadedBy");
     geologieData = await geologie.find().sort({ _id: 1 }).populate("uploadedBy");
-    webLegal=await websiteLegal.find().sort({ _id: 1 }).populate("uploadedBy");
-    mdvalue=await md.find().sort({ _id: 1 }).populate("uploadedBy");
+    webLegal = await websiteLegal.find().sort({ _id: 1 }).populate("uploadedBy");
+    mdvalue = await md.find().sort({ _id: 1 }).populate("uploadedBy");
   } catch (error) {
     console.log(error);
   }
@@ -90,10 +91,9 @@ async function secDatafind() {
     instrumentationinChemicalData = await instrumentationinChemical.find().sort({ _id: 1 }).populate("uploadedBy");
     gemologyData = await gemology.find().sort({ _id: 1 }).populate("uploadedBy");
     riskFactorsData = await riskFactors.find().sort({ _id: 1 }).populate("uploadedBy");
-    
   } catch (error) {
     console.error("Error fetching sec data:", error);
-      throw new ExpressError("Please try again later internal server error", 500);
+    throw new ExpressError("Please try again later internal server error", 500);
   }
 }
 function namedata(name) {
@@ -101,13 +101,13 @@ function namedata(name) {
     case "computer":
     case "computerscience": return csData;
     case "physics": return phydata;
-    case "Aec":return aecdata;
+    case "Aec": return aecdata;
     case "aec": return aecdata;
     case "statistics": return staticdata;
     case "mathematics":
     case "math": return mathData;
     case "yoga": return yogaData;
-    case "web designing":return webData;
+    case "web designing": return webData;
     case "secWeb": return webData;
     case "manAndEnvironment":
     case "man and environment": return manData;
@@ -126,8 +126,8 @@ function namedata(name) {
     case "environment": return environmentData;
     case "mathproblemsolving": return mathsolveData;
     case "ethics in academia and mathematical exploration": return mathsolveData;
-    case "websiteLegal":return webLegal;
-    case "md":return mdvalue;
+    case "websiteLegal": return webLegal;
+    case "md": return mdvalue;
     // case "comingSoon":return datacorrec;
     default: return datacorrec;
   }
@@ -145,9 +145,10 @@ async function getDatasem2() {
     geologieDatasem2 = await geologiesem2.find().sort({ _id: 1 }).populate("uploadedBy");
     earthscienceDatasem2 = await earthsciencesem2.find().sort({ _id: 1 }).populate("uploadedBy");
     zoologyDatasem2 = await zoologysem2.find().sort({ _id: 1 }).populate("uploadedBy");
-  } catch (er) {
-       console.error("Error fetching sec data:", error);
-      throw new ExpressError("Please try again later internal server error", 500);
+     mdsem2value = await mdsem2.find().sort({ _id: 1 }).populate("uploadedBy");
+  } catch (error) {
+    console.error("Error fetching sec data:", error);
+    throw new ExpressError("Please try again later internal server error", 500);
   }
 }
 function namedatasem2(name) {
@@ -156,7 +157,7 @@ function namedatasem2(name) {
     case "computer":
     case "computerscience": return computerscienceDatasem2;
     case "physics": return physicsDatasem2;
-    case "Aec":return AecDatasem2;
+    case "Aec": return AecDatasem2;
     case "aec": return AecDatasem2;
     //case "static":return statisticsDatasem2;
     case "statistics": return statisticsDatasem2;
@@ -191,7 +192,7 @@ function namedatasem2(name) {
     case "gemology": return gemologyData;
     case "riskFactors":
     case "risk factors for genetic disorders": return riskFactorsData;
-    case "md":return mdvalue;
+    case "md": return mdsem2value;
     default: return datacorrec;
   }
 }

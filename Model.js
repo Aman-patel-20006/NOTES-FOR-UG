@@ -71,7 +71,8 @@ const models = [
 "foodPreservatives",
 "instrumentationinChemical",
 "gemology",
-"riskFactors"
+"riskFactors",
+"mdsem2"
 ];
 const mongooseModels = models .reduce((oje, name) => {
   oje[name] = mongoose.model(name, Schemamodel);
