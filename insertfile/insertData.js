@@ -11,10 +11,14 @@ const { Aec, chemistry, physics, computerscience, manAndEnvironment, math, secWe
   earthsciencesem2,
   zoologysem2,
   mobileDevelopment, basicsofremoteSensing, computationalMathematics, dataAnalysis, energyConversion, latexTypesetting,
-  preservationandManagement, foodPreservatives, instrumentationinChemical, gemology, riskFactors, websiteLegal,md,mdsem2} = require("../Model.js");
+  preservationandManagement, foodPreservatives, instrumentationinChemical, gemology, riskFactors, websiteLegal, md, mdsem2, csMajor_one, csMajor_two, csMinor_one,
+  physicsMajor_one, physicsMajor_two, physicsMinor_one,
+  chemistryMajor_one, chemistryMajor_two, chemistryMinor_one, statisticsMajor_one, statisticsMajor_two, statisticsMinor_one,
+  mathMajor_one, mathMajor_two, mathMinor_one,
+  geologyMajor_one, geologyMajor_two, geologyMinor_one, Aecsem3, mdsem3 } = require("../Model.js");
 const models = {
   aec: Aec,
-  Aec:Aec,
+  Aec: Aec,
   chemistry,
   physics,
   computerscience,
@@ -59,34 +63,56 @@ let models2 = {
   "instrumentation in chemical industry": instrumentationinChemical,
   "gemology": gemology,
   "risk factors for genetic disorders": riskFactors,
-  "md":mdsem2
+  "md": mdsem2
+}
+let modelsem3 = {
+  computerscience: { major_one: csMajor_one, major_two: csMajor_two, minor_one: csMinor_one, },
+  physics: { major_one: physicsMajor_one, major_two: physicsMajor_two, minor_one: physicsMinor_one, },
+  chemistry: { major_one: chemistryMajor_one, major_two: chemistryMajor_two, minor_one: chemistryMinor_one, },
+  statistics: { major_one: statisticsMajor_one, major_two: statisticsMajor_two, minor_one: statisticsMinor_one, },
+  math: { major_one: mathMajor_one, major_two: mathMajor_two, minor_one: mathMinor_one, },
+  geologie: { major_one: geologyMajor_one, major_two: geologyMajor_two, minor_one: geologyMinor_one, },
+  Aec: Aecsem3,
+  aec: Aecsem3,
+  md: mdsem3
 }
 //delete object
-async function deleteChapter(subject, Semester, id, currUserID,admin) {
+async function deleteChapter(subject, Semester, id, currUserID, admin, major_minor = '') {
   let subjectModel = null;
   if (Semester.trim() === "First") {
     subjectModel = models[subject.toLowerCase()];
-  } else if(Semester.trim() === "Second") {
+  } else if (Semester.trim() === "Second") {
     subjectModel = models2[subject.toLowerCase()];
+  } else if (Semester.trim() === "Third") {
+    if (subject == "md" || subject == "Aec" || subject == "aec") {
+      subjectModel = modelsem3[subject];
+    } else {
+      let subject_major_minor = modelsem3[subject];
+      // console.log("subject model",subject_major_minor);
+      // console.log("major",major_minor);
+      subjectModel = subject_major_minor[major_minor];
+        // console.log(subjectModel);
+    }
   } else { console.log("not found model"); }
   // ✅ get actual model from name
   if (!subjectModel) {
     console.log("Invalid subject for model:", subject);
     return {
-        success: false,
-        message: "Please try again some thing internal problem"
-      }
+      success: false,
+      message: "Please try again some thing internal problem"
+    }
   }
   try {
     let charObject = await subjectModel.findById(id);
     console.log
     // if (admin || (charObject.uploadedBy)?.toString() === currUserID.toString() ) {
-if (admin ||String(charObject?.uploadedBy) === String(currUserID)) {
+    if (admin || String(charObject?.uploadedBy) === String(currUserID)) {
       let result = await subjectModel.findByIdAndDelete(id);
-        return {
+      return {
         success: true,
         message: "Deletion is success full",
-      }} else {
+      }
+    } else {
       return {
         success: false,
         message: "You are not allowed to delete this pdf"
@@ -96,20 +122,29 @@ if (admin ||String(charObject?.uploadedBy) === String(currUserID)) {
     console.log("error occured on delete object");
     console.log(err);
     return {
-        success: false,
-        message: "Please try again some thing internal problem"
-      }
+      success: false,
+      message: "Please try again some thing internal problem"
+    }
   }
 }
-async function insertData(title, src, subject, Semester, userId) {
+async function insertData(title, src, subject, Semester, userId, major_minor = '') {
   let subjectModel = null;
-  // console.log(title, src, subject, Semester);
+  //  console.log(title, src, subject, Semester,major_minor);
   if (Semester.trim() === "First") {
     subjectModel = models[subject];
   } else if (Semester.trim() === "Second") {
     subjectModel = models2[subject];
+  } else if (Semester.trim() === "Third") {
+    if (subject == "md" || subject == "Aec" || subject == "aec") {
+      subjectModel = modelsem3[subject];
+    } else {
+      let subject_major_minor = modelsem3[subject];
+      // console.log(subject_major_minor);
+      subjectModel = subject_major_minor[major_minor];
+      //  console.log(subjectModel);
+    }
   }
-  // ✅ get actual model from name
+  //  get actual model from name
   if (!subjectModel) {
     console.log("Invalid subject:", subject);
     return;

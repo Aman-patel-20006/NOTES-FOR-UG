@@ -4,7 +4,11 @@ const { Aec, chemistry, physics, computerscience, manAndEnvironment, math, secWe
   datavalid, digitalliteracie, environment, geologie, mxexcel, quanintychemistrie, smartphonegeoscience, mathproblemsolving
   , Aecsem2, chemistrysem2, physicssem2, computersciencesem2, mathsem2, yogasem2, statisticssem2, ayurvedasem2, geologiesem2,
   earthsciencesem2, zoologysem2, mobileDevelopment, basicsofremoteSensing, computationalMathematics, dataAnalysis, energyConversion, latexTypesetting,
-  preservationandManagement, foodPreservatives, instrumentationinChemical, gemology, riskFactors, websiteLegal, md, mdsem2 } = require("../Model.js");
+  preservationandManagement, foodPreservatives, instrumentationinChemical, gemology, riskFactors, websiteLegal, md, mdsem2, csMajor_one, csMajor_two, csMinor_one,
+  physicsMajor_one, physicsMajor_two, physicsMinor_one,
+  chemistryMajor_one, chemistryMajor_two, chemistryMinor_one, statisticsMajor_one, statisticsMajor_two, statisticsMinor_one,
+  mathMajor_one, mathMajor_two, mathMinor_one,
+  geologyMajor_one, geologyMajor_two, geologyMinor_one, Aecsem3, mdsem3 } = require("../Model.js");
 const ExpressError = require("../expressError.js");
 //data define
 let aecdata = null;
@@ -50,6 +54,26 @@ riskFactorsData = null;
 webLegal = null;
 mdvalue = null;
 mdsem2value = null;
+csMajor_onedata = null;
+csMajor_twodata = null;
+csMinor_onedata = null;
+physicsMajor_onedata = null;
+physicsMajor_twodata = null;
+physicsMinor_onedata = null;
+chemistryMajor_onedata = null;
+chemistryMajor_twodata = null;
+chemistryMinor_onedata = null;
+statisticsMajor_onedata = null;
+statisticsMajor_twodata = null;
+statisticsMinor_onedata = null;
+mathMajor_onedata = null;
+mathMajor_twodata = null;
+mathMinor_onedata = null;
+geologyMajor_onedata = null;
+geologyMajor_twodata = null;
+geologyMinor_onedata = null;
+Aecsem3data = null;
+mdsem3data = null;
 //to find mongodb dat
 async function getData() {
   try {
@@ -145,12 +169,13 @@ async function getDatasem2() {
     geologieDatasem2 = await geologiesem2.find().sort({ _id: 1 }).populate("uploadedBy");
     earthscienceDatasem2 = await earthsciencesem2.find().sort({ _id: 1 }).populate("uploadedBy");
     zoologyDatasem2 = await zoologysem2.find().sort({ _id: 1 }).populate("uploadedBy");
-     mdsem2value = await mdsem2.find().sort({ _id: 1 }).populate("uploadedBy");
+    mdsem2value = await mdsem2.find().sort({ _id: 1 }).populate("uploadedBy");
   } catch (error) {
     console.error("Error fetching sec data:", error);
     throw new ExpressError("Please try again later internal server error", 500);
   }
 }
+
 function namedatasem2(name) {
   //  console.log("name is",name);
   switch (name) {
@@ -196,4 +221,88 @@ function namedatasem2(name) {
     default: return datacorrec;
   }
 }
-module.exports = { namedata, getData, secDatafind, getDatasem2, namedatasem2 };
+async function getDatasem3() {
+  try {
+    csMajor_onedata = await csMajor_one.find().sort({ _id: 1 }).populate("uploadedBy");
+    csMajor_twodata = await csMajor_two.find().sort({ _id: 1 }).populate("uploadedBy");
+    csMinor_onedata = await csMinor_one.find().sort({ _id: 1 }).populate("uploadedBy");
+    physicsMajor_onedata = await physicsMajor_one.find().sort({ _id: 1 }).populate("uploadedBy");
+    physicsMajor_twodata = await physicsMajor_two.find().sort({ _id: 1 }).populate("uploadedBy");
+    physicsMinor_onedata = await physicsMinor_one.find().sort({ _id: 1 }).populate("uploadedBy");
+    chemistryMajor_onedata = await chemistryMajor_one.find().sort({ _id: 1 }).populate("uploadedBy");
+    chemistryMajor_twodata = await chemistryMajor_two.find().sort({ _id: 1 }).populate("uploadedBy");
+    chemistryMinor_onedata = await chemistryMinor_one.find().sort({ _id: 1 }).populate("uploadedBy");
+    statisticsMajor_onedata = await statisticsMajor_one.find().sort({ _id: 1 }).populate("uploadedBy");
+    statisticsMajor_twodata = await statisticsMajor_two.find().sort({ _id: 1 }).populate("uploadedBy");
+    statisticsMinor_onedata = await statisticsMinor_one.find().sort({ _id: 1 }).populate("uploadedBy");
+    mathMajor_onedata = await mathMajor_one.find().sort({ _id: 1 }).populate("uploadedBy");
+    mathMajor_twodata = await mathMajor_two.find().sort({ _id: 1 }).populate("uploadedBy");
+    mathMinor_onedata = await mathMinor_one.find().sort({ _id: 1 }).populate("uploadedBy");
+    geologyMajor_onedata = await geologyMajor_one.find().sort({ _id: 1 }).populate("uploadedBy");
+    geologyMajor_twodata = await geologyMajor_two.find().sort({ _id: 1 }).populate("uploadedBy");
+    geologyMinor_onedata = await geologyMinor_one.find().sort({ _id: 1 }).populate("uploadedBy");
+    Aecsem3data = await Aecsem3.find().sort({ _id: 1 }).populate("uploadedBy");
+    mdsem3data = await mdsem3.find().sort({ _id: 1 }).populate("uploadedBy");
+  } catch (error) {
+    console.log(error);
+  }
+}
+function namedatasem3(subject, major_minor) {
+  const data = {
+    physics: {
+      major_one: physicsMajor_onedata,
+      major_two: physicsMajor_twodata,
+      minor_one: physicsMinor_onedata
+    },
+    chemistry: {
+      major_one: chemistryMajor_onedata,
+      major_two: chemistryMajor_twodata,
+      minor_one: chemistryMinor_onedata
+    },
+    computerscience: {
+      major_one: csMajor_onedata,
+      major_two: csMajor_twodata,
+      minor_one: csMinor_onedata,
+    },
+    computer: {
+      major_one: csMajor_onedata,
+      major_two: csMajor_twodata,
+      minor_one: csMinor_onedata,
+    },
+    statistics: {
+      major_one: statisticsMajor_onedata,
+      major_two: statisticsMajor_twodata,
+      minor_one: statisticsMinor_onedata,
+    },
+    mathematics: {
+      major_one: mathMajor_onedata,
+      major_two: mathMajor_twodata,
+      minor_one: mathMinor_onedata,
+    },
+    math: {
+      major_one: mathMajor_onedata,
+      major_two: mathMajor_twodata,
+      minor_one: mathMinor_onedata,
+    },
+    geologie: {
+      major_one: geologyMajor_onedata,
+      major_two: geologyMajor_twodata,
+      minor_one: geologyMinor_onedata,
+    },
+    geology: {
+      major_one: geologyMajor_onedata,
+      major_two: geologyMajor_twodata,
+      minor_one: geologyMinor_onedata,
+    },
+    Aec: Aecsem3data,
+    aec: Aecsem3data,
+    md: mdsem3data,
+  };
+  if(major_minor){
+      return data[subject]?.[major_minor];
+  }else{
+  return data[subject];
+  }
+
+}
+module.exports = { namedata, getData, secDatafind, getDatasem2, namedatasem2, getDatasem3, namedatasem3 };

@@ -3,6 +3,7 @@
     <%# currUser.id %>
       <% for (let item of data) { %>
         <div class="chapter">
+          <%# major_minor %>
           <%# currUser.email%>
             <%# currUser.admin %>
               <%# item.uploadedBy.email %>
@@ -38,6 +39,7 @@
                       <input type="hidden" name="fileID" value="<%=id%>">
                       <input type="hidden" name="Semester" value="<%=semester %>">
                       <input type="hidden" name="objectID" value="<%=item._id%>">
+                       <input type="hidden" name="major_minor" value="<%= major_minor %>">
                       <% if(currUser && currUser.admin) { %>
                         <button type="submit" class="btn delete-button"
                           onclick="return confirm('Are you sure you want to delete this?'); ">DELETE</button>
@@ -46,7 +48,7 @@
                           onclick="return confirm('Are you sure you want to delete this?'); ">DELETE</button>
                           <% } %>
                     </form>
-                    
+            
                   </div>
                 </div>
         </div>

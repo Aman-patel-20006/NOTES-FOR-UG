@@ -1,7 +1,7 @@
 const express = require('express')
-const router = express.Router()
+const router = express.Router();
 // require functions
-const { namedata, getData, secDatafind, getDatasem2, namedatasem2 } = require("../fuctionData/fuction.js");
+const { namedata, getData, secDatafind, getDatasem2, namedatasem2, getDatasem3, namedatasem3 } = require("../fuctionData/fuction.js");
 const { viewLink, downloadurl } = require("../fuctionData/urlLink.js");
 router.get('/', async (req, res) => {
   res.render("main.ejs");  // render main.ejs
@@ -19,6 +19,21 @@ router.get("/sec/:semester", asyncWrap(async (req, res) => {
     throw new expressError("Some internal error occurred Please try again And refresh the page", 400);
   }
   res.render("secpage/sec.ejs", { semester });
+}))
+// for anoter subject 
+router.get("/other-Major-Minor/:semester/:name",asyncWrap(async(req,res)=>{
+  if (!req.params.name) {
+    console.log("name is not comming in path of query and error is occured");
+    throw new expressError("Some internal error occurred Please try again And refresh the page", 400);
+  }
+  if (!req.params.semester) {
+    console.log("semester not comming and error is occured");
+    throw new expressError("Some internal error occurred Please try again And refresh the page", 400);
+  }
+    let name = req.params.name.toLocaleLowerCase();
+    // console.log(name);
+      let semester = req.params.semester;
+      res.render("mjorMinorcomman.ejs",{name,semester});
 }))
 //for sec chaper view 
 router.get("/secChaper/:semester", asyncWrap(async (req, res) => {
@@ -66,29 +81,39 @@ router.get("/chapter/:semester", asyncWrap(async (req, res) => {
     console.log("semester not comming and error is occured");
     throw new expressError("Some internal error occurred Please try again And refresh the page", 400);
   }
-   await getData();
-    await secDatafind();
-    await getDatasem2();
+  //  await getData();
+  //   await secDatafind();
+  //   await getDatasem2();
   let name = (req.query.name || "").toLowerCase();
   let semester = req.params.semester;
+  let major_minor=(req.query.major_minor ||"");
   if (name === "sec") {
     res.redirect(`/sec/${semester}`)
   } else {
     let data = null;
     if (semester.trim() === "First") {
+        await getData();
+    await secDatafind();
       data = await namedata(name);
     } else if (semester.trim() === "Second") {
+          await getDatasem2();
+         await secDatafind();
       data = await namedatasem2(name);
+    }else if(semester.trim() === "Third"){
+  await getDatasem3();
+  // console.log(name,major_minor);
+    data= await namedatasem3(name,major_minor);
     }
+    
     //same  (!data || data.length === 0)  (!data?.length)
     if (!Array.isArray(data) || !data) {
       if (!(data==null)  && data.length  == 0){ console.log("data is comming from data base but data not present") }
       else {
-        console.log("data is not coming from data base please check");
+        console.log("data is not coming from data base please check","data is value is",data);
       }
       data = [];
     }
-    res.render("chapter/chapterlist.ejs", { data, name, semester })
+    res.render("chapter/chapterlist.ejs", { data, name, semester,major_minor })
   };
 }))
 //pdf open karne ke liye

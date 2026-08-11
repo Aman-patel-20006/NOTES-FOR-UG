@@ -123,6 +123,8 @@
 
     #SUBJECT,
     #SEMESTER,
+    #mojor_minor,
+    #thirdsemsec,
     .sec {
       width: 16.2vw;
       height: 7vh;
@@ -134,6 +136,8 @@
 
     #SUBJECT:hover,
     #SEMESTER:hover,
+     #mojor_minor,
+     #thirdsemsec,
     .sec:hover {
       border: brown solid .12rem;
       box-shadow: 0 0 5px rgba(165, 42, 42, 0.5);
@@ -164,6 +168,8 @@
 
       #SUBJECT,
       #SEMESTER,
+       #mojor_minor,
+       #thirdsemsec,
       .sec {
         width: 33vw;
         height: 7vh;
@@ -198,6 +204,8 @@
 
       #SUBJECT,
       #SEMESTER,
+       #mojor_minor,
+       #thirdsemsec,
       .sec {
         width: 17rem;
         height: 6vh;

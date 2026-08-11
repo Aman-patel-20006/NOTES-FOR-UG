@@ -23,10 +23,19 @@
             <option value="" disabled selected>CHOOSE SEMESTER</option>
             <option value="First">First</option>
             <option value="Second"> Second </option>
-            <option disabled> THIRD</option>
+            <option value="Third"> THIRD</option>
             <option disabled>FOURTH</option>
             <option disabled>FIVETH</option>
             <option disabled>SIXTH</option>
+          </select>
+          <select name="mojor_minor"  disabled id="mojor_minor" class="mojor_minor"  required>
+            <option value="" disabled selected>CHOOSE MOJOR-MONOR</option>
+            <option value="major_one">Major-Paper-One</option>
+            <option value="major_two">Major-Paper-Two</option>
+            <option value="minor_one">Minor-Paper-One</option>
+          </select>
+          <select name="secSubject" id="thirdsemsec" class="sec"  disabled required>
+                    <option value=major_one>third sem sec </option>
           </select>
           <select name="secSubject" class="sec" id="secSecondsem" disabled required>
             <option value="" disabled selected>CHOOSE SEC SECOND SEM SUBJECT</option>
@@ -44,8 +53,8 @@
             <option value="gemology">Gemology</option>
             <option value="risk factors for genetic disorders">Risk Factors for Genetic Disorders</option>
           </select>
-          <select name="secSubject" id="secFirstsem" disabled  class="sec" required>
-            <option value="" disabled selected>CHOOSE SEC SUBJECT</option>
+          <select name="secSubject" id="secFirstsem" disabled class="sec" required>
+            <option value="" disabled selected>CHOOSE SEC FIRST SEM SUBJECT</option>
             <option value="web designing">Web designing</option>
             <option value="man and environment">Man And Environment</option>
             <option value="digital literacy">Digital Literacie</option>
@@ -54,7 +63,8 @@
             <option value="quality control in chemical analysis">Quality Control and Chemistry Analysis</option>
             <option value="ethics in academia and mathematical exploration">Ethics in Academia and Mathematics
               Exploration</option>
-                   </select>
+          </select>
+
         </div>
         <label for="name" id="namelable">ENTER NAME OF CHAPTER:</label>
         <input type="text" id="name" name="title" title="PUT SUBJECT NAME" placeholder="ENTER CHAPTER NAME" required>
@@ -64,11 +74,11 @@
           <label class="file-btn" for="fileInput">Choose File</label>
           <input type="file" name="file" id="fileInput" id="choosefile" accept=".jpg,.pdf" required>
         </div>
-        <button type="submit" id="filesubmitBtn" >SUBMIT</button>
+        <button type="submit" id="filesubmitBtn">SUBMIT</button>
       </form>
     </div>
   </div>
-<div id="overlay" style="
+  <div id="overlay" style="
   display:none;
   position:fixed;
     top:0; left:0;
@@ -79,8 +89,8 @@
   justify-content:center;
   align-items:center;
 ">
-  Uploading file.....
-</div>
+    Uploading file.....
+  </div>
   <!-- <div id="overlay" style="
   display:flex;
   position:fixed;
@@ -94,4 +104,3 @@
   align-items:center;
 "> -->
   <!-- Moving line -->
- 

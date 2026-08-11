@@ -74,10 +74,20 @@ const models = [
 "riskFactors",
 "mdsem2"
 ];
+const modelsemthird=["csMajor_one","csMajor_two","csMinor_one",
+  "physicsMajor_one","physicsMajor_two","physicsMinor_one",
+  "chemistryMajor_one","chemistryMajor_two","chemistryMinor_one","statisticsMajor_one","statisticsMajor_two","statisticsMinor_one",
+  "mathMajor_one","mathMajor_two","mathMinor_one",
+  "geologyMajor_one","geologyMajor_two","geologyMinor_one","Aecsem3","mdsem3"];
 const mongooseModels = models .reduce((oje, name) => {
+  oje[name] = mongoose.model(name, Schemamodel);
+  return oje;
+}, {});
+// made third sem model
+const mongooseModelsthirdsem= modelsemthird.reduce((oje, name) => {
   oje[name] = mongoose.model(name, Schemamodel);
   return oje;
 }, {});
 ///login model schema
  module.exports={Aec,chemistry,physics,computerscience,manAndEnvironment,math,secWeb
-  ,yoga,  statistics,ayurveda,datavalid,digitalliteracie,environment,geologie,mxexcel,quanintychemistrie,smartphonegeoscience,mathproblemsolving,...mongooseModels,websiteLegal,md};
+  ,yoga,  statistics,ayurveda,datavalid,digitalliteracie,environment,geologie,mxexcel,quanintychemistrie,smartphonegeoscience,mathproblemsolving,...mongooseModels,websiteLegal,md,...mongooseModelsthirdsem};

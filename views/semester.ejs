@@ -1,90 +1,113 @@
 <% layout("layoutAll/layout.ejs") -%>
-        <div id="sembigcon">
-            <!-- first semseter -->
-           <% if (sem >1) { %>
-  <div class="semsmallcon" type="button">
-<%}else {%>
-       <div class="semsmallcon" style="display: none;">
-<% } %>
-                <a id="a" href="/chapter/First?name=<%=name%>">
-                    <span>
-                        <h3><b>SEMESTER FIRST NOTES</b></h3>
-                        <P>Here, You Will Find all First Semester Notes, Along With Pyq And Previous Years Papers From Various 
-                             Universities — All In One Place!</P>
-                        <h5>FOR VIEW NOTES CLICK ME</h5>
-                    </span>
-                </a>
-            </div>
-           <% if (sem >=2) { %>
-  <div class="semsmallcon"  type="button">
-<%}else {%>
-       <div class="semsmallcon" style="display: none;">
-<% } %>
-                <a id="a" href="/chapter/Second?name=<%=name%>">
-                    <span>
-                        <h3>SEMESTER SECOND NOTES</h3>
-                        <P>Here, you will find all  Second Semester notes, along with Pyq and previous years papers from Various
-                             Universities — All In One Place!</P>
-                        <h5>FOR VIEW NOTES CLICK ME</h5>
-                    </span>
-                </a>
-            </div>
+    <div id="sembigcon">
+        <!-- first semseter -->
+        <% if (sem>1) { %>
+            <div class="semsmallcon" type="button">
+                <%}else {%>
+                    <div class="semsmallcon" style="display: none;">
+                        <% } %>
+                            <a id="a" href="/chapter/First?name=<%=name%>">
+                                <span>
+                                    <h3><b> FIRST SEMESTER NOTES</b></h3>
+                                    <P>Here, You Will Find all First Semester Notes, Along With Pyq And Previous Years
+                                        Papers From Various
+                                        Universities — All In One Place!</P>
+                                    <h5>FOR VIEW NOTES CLICK ME</h5>
+                                </span>
+                            </a>
+                    </div>
+                    <% if (sem>=2) { %>
+                        <div class="semsmallcon" type="button">
+                            <%}else {%>
+                                <div class="semsmallcon" style="display: none;">
+                                    <% } %>
+                                        <a id="a" href="/chapter/Second?name=<%=name%>">
+                                            <span>
+                                                <h3> SECOND SEMESTER NOTES</h3>
+                                                <P>Here, you will find all Second Semester notes, along with Pyq and
+                                                    previous years papers from Various
+                                                    Universities — All In One Place!</P>
+                                                <h5>FOR VIEW NOTES CLICK ME</h5>
+                                            </span>
+                                        </a>
+                                </div>
 
-            <% if (sem >=3) { %>
-  <div class="semsmallcon"  type="button">
-<%}else {%>
-       <div class="semsmallcon" style="display: none;">
-<% } %>
-                <a id="a" href="">
-                    <span>
-                        <h3>SEMESTER THIRD NOTES</h3>
-                        <P>Here, you will find all THIRD Semester notes, along with Pyq and previous years papers from
-                              Various Universities — All In One Place!</P>
-                        <h5>FOR VIEW NOTES CLICK ME</h5>
-                    </span>
-                </a>
-            </div>
-           <% if (sem >=4) { %>
-  <div class="semsmallcon"   type="button">
-<%}else {%>
-       <div class="semsmallcon" style="display: none;">
-<% } %>
-                <a id="a" href="">
-                    <span>
-                        <h3>SEMESTER FOURTH NOTES</h3>
-                        <P id="infopara">Here, you will find all FOURTH Semester notes, along with Pyq and previous years papers from
-                            Various Universities — All In One Place!</P>
-                        <h5>FOR VIEW NOTES CLICK ME</h5>
-                    </span>
-                </a>
-            </div>
-           <% if (sem >=5) { %>
-  <div class="semsmallcon"  type="button">
-<%}else {%>
-       <div class="semsmallcon" style="display: none;">
-<% } %>
-                <a id="a" href="">
-                    <span>
-                        <h3>SEMESTER FIFTH NOTES</h3>
-                        <P>Here, you will find all FIFTH Semester notes, along with Pyq and previous years papers from
-               Various Universities — All In One Place!</P>
-                        <h5>FOR VIEW NOTES CLICK ME</h5>
-                    </span>
-                </a>
-            </div>
-           <% if (sem >=6) { %>
-  <div class="semsmallcon"  type="button">
-<%}else {%>
-       <div class="semsmallcon" style="display: none;">
-<% } %>
-                <a id="a" href="">
-                    <span>
-                        <h3>SEMESTER SIXTH NOTES</h3>
-                        <P>Here, you will find all SIXTH Semester notes, along with Pyq and previous years papers from
-      Various Universities — All In One Place!</P>
-                        <h5>FOR VIEW NOTES CLICK ME</h5>
-                    </span>
-                </a>
-            </div>
+                                <% if (sem>=3) { %>
+                                    <div class="semsmallcon" type="button">
+                                        <%}else {%>
+                                            <div class="semsmallcon" style="display: none;">
+                                                <% } %>
+                                                    <% if(name=="sec" ||name=="aec" ||name=="md" ){%>
+                                                        <a id="a" href="/chapter/Third?name=<%=name%>">
+                                                            <% }else{ %>
+                                                                <a id="a" href="/other-Major-Minor/Third/<%=name%>">
+                                                                    <%}%>
+                                                                        <span>
+                                                                            <h3> THIRD SEMESTER NOTES</h3>
+                                                                            <P>Here, you will find all THIRD Semester
+                                                                                notes, along with Pyq and previous years
+                                                                                papers from
+                                                                                Various Universities — All In One Place!
+                                                                            </P>
+                                                                            <h5>FOR VIEW NOTES CLICK ME</h5>
+                                                                        </span>
+                                                                </a>
+                                            </div>
+                                            <% if (sem>=4) { %>
+                                                <div class="semsmallcon" type="button">
+                                                    <%}else {%>
+                                                        <div class="semsmallcon" style="display: none;">
+                                                            <% } %>
+                                                                <a id="a" href="">
+                                                                    <span>
+                                                                        <h3> FOURTH SEMESTER NOTES</h3>
+                                                                        <P id="infopara">Here, you will find all FOURTH
+                                                                            Semester notes, along with Pyq and previous
+                                                                            years papers from
+                                                                            Various Universities — All In One Place!</P>
+                                                                        <h5>FOR VIEW NOTES CLICK ME</h5>
+                                                                    </span>
+                                                                </a>
+                                                        </div>
+                                                        <% if (sem>=5) { %>
+                                                            <div class="semsmallcon" type="button">
+                                                                <%}else {%>
+                                                                    <div class="semsmallcon" style="display: none;">
+                                                                        <% } %>
+                                                                            <a id="a" href="">
+                                                                                <span>
+                                                                                    <h3> FIFTH SEMESTER NOTES</h3>
+                                                                                    <P>Here, you will find all FIFTH
+                                                                                        Semester notes, along with Pyq
+                                                                                        and previous years papers from
+                                                                                        Various Universities — All In
+                                                                                        One Place!</P>
+                                                                                    <h5>FOR VIEW NOTES CLICK ME</h5>
+                                                                                </span>
+                                                                            </a>
+                                                                    </div>
+                                                                    <% if (sem>=6) { %>
+                                                                        <div class="semsmallcon" type="button">
+                                                                            <%}else {%>
+                                                                                <div class="semsmallcon"
+                                                                                    style="display: none;">
+                                                                                    <% } %>
+                                                                                        <a id="a" href="">
+                                                                                            <span>
+                                                                                                <h3> SIXTH SEMESTER
+                                                                                                    NOTES</h3>
+                                                                                                <P>Here, you will find
+                                                                                                    all SIXTH Semester
+                                                                                                    notes, along with
+                                                                                                    Pyq and previous
+                                                                                                    years papers from
+                                                                                                    Various Universities
+                                                                                                    — All In One Place!
+                                                                                                </P>
+                                                                                                <h5>FOR VIEW NOTES CLICK
+                                                                                                    ME</h5>
+                                                                                            </span>
+                                                                                        </a>
+                                                                                </div>
 
-        </div>
+                                                                        </div>

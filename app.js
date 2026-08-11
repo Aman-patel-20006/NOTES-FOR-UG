@@ -11,7 +11,7 @@ const path = require('path');
 const app = express();
 const conect = require("./mongoconect.js");
 const port = process.env.PORT;
-const { namedata, getData, secDatafind, getDatasem2, namedatasem2 } = require("./fuctionData/fuction.js");
+const { namedata, getData, secDatafind, getDatasem2, namedatasem2,getDatasem3,namedatasem3} = require("./fuctionData/fuction.js");
 const insertData = require("./insertfile/insertData.js");
 const { uploadtoken } = require("./Model.js");
 //method override
@@ -28,41 +28,54 @@ app.use(express.urlencoded({ extended: true }));
 //routher
 const pageRouter = require("./rought/page.js");
 const Server = require("./rought/server.js");
-const loginAndsignup=require("./rought/loginAndsignup.js");
+const loginAndsignup = require("./rought/loginAndsignup.js");
 // console.log(loginAndsignup);
-app.use("/",loginAndsignup);
+app.use("/", loginAndsignup);
 app.use("/", pageRouter);
 app.use("/", Server);
 app.get("/profile", (req, res) => {
-   console.log(req.user);
-console.log(req.session);
-   res.send(req.user,req.session);
+  console.log(req.user);
+  console.log(req.session);
+  res.send(req.user, req.session);
 });
 const expressError = require("./expressError.js");
 //warp error
 const asyncWrap = require("./asyncWarp/wrapError.js");
 app.get("/check-title", async (req, res) => {
-  await getData();
-  await getDatasem2();
-  await secDatafind();
-  const { subject, title, Semester } = req.query;
+  const { subject, title, Semester,major_minor} = req.query;
+  // console.log(subject, title, Semester,major_minor);
   let databack = null;
-    // console.log(subject, title, Semester );
+  // console.log(subject, title, Semester );
   if (Semester.trim() == "First".trim()) {
+     await getData();
+  await secDatafind();
     databack = await namedata(subject);
     // console.log("fiest sem ", databack);
   } else if (Semester.trim() == "Second") {
+    await secDatafind();
+      await getDatasem2();
     databack = await namedatasem2(subject);
     //  console.log("secondsem ", databack);
+  }else if (Semester.trim() == "Third"){
+     await getDatasem3();
+   databack=await namedatasem3(subject,major_minor);
   }
+  // console.log("data is commint",databack);
   if (!databack || !Array.isArray(databack)) {
     console.log("No data found for subject:", subject);
-    return res.send("false");
+    res.json({
+      exist: true,
+      message: "some went wrong on choice please check",
+    });
+  } else {
+    const exist = databack.find(
+      item => item.title.toLowerCase() === title.toLowerCase()
+    );
+    res.json({
+      exist: exist,
+      message: "Chapter name already exists ! Please Change Name Like This [CHAPER NAME Notes-1]",
+    });
   }
-  const exist = databack.find(
-    item => item.title.toLowerCase() === title.toLowerCase()
-  );
-  res.send(exist ? "true" : "false");
 });
 //error handling
 app.use((err, req, res, next) => {

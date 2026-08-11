@@ -9,4 +9,4 @@ conect();
 //   .then(() => console.log("MongoDB connected"))
 //   .catch(err => console.error(" Connection error:", err));}
 //   conect();
-   module.exports={conect,url};
+//    module.exports={conect,url};
