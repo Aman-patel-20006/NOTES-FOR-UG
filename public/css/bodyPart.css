@@ -6,7 +6,11 @@ body{
   padding-top: 50px;
 }
 }
-
+@media(width<1200px){
+    body{
+  padding-top: 50px;
+}
+}
 * {
   margin: 0;
   padding: 0;
@@ -78,6 +82,9 @@ line-height: 1;
 }
 
 @media (max-width:750px){
+    body{
+  padding-top: 50px;
+}
   .image-text{
     font-size: large;
   }

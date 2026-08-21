@@ -7,16 +7,11 @@ const upload = multer({ dest: "uploads/" });
 const dotenv = require('dotenv');
 dotenv.config();
 const router = express.Router();
-// OAuth setup
-// const credentials = require("../credentials.json");
-// const token = require("../uploadAccessValue.json"); 
-//  const token={"access_token":"ya29.a0AT3oNZ8LVikmXdzfm1KbEnv7_kI9Mz4c4ujeMDuuj5aUHEc7rzPHqdedRQV5pg5hjmTb01ijsWOTVMaDWeZRj4smbVs6nzhxp0GJSAuBNLEGKUeJ6fsAGTax7nPmAcj0hVU7f8KhquehrOewYBStvS_U18aTVXGpreGAGv_IrEVmTmFnP10ZF3sqxXP1sZN6HwA0i7QaCgYKAeISARMSFQHGX2MiEhy30EQFki6EoiX7Z_enMQ0206","refresh_token":"1//0gFiK_9j8_FbLCgYIARAAGBASNwF-L9IrAMd1mf7S_8M9IHht6hDMkzR4UTg_yr-K_q5Elt3_u3kbzltk7_73VXmvUrufC3pprWM","scope":"https://www.googleapis.com/auth/drive","token_type":"Bearer","expiry_date":1783675836452}
-const token = require("../token.json");// token access
-//  const token={"access_token":"ya29.a0ARGnu0amAwWdJzjK7Zac8SxfrAP5N9hhomdNAfN5zgcUrKwL0Ozqs_Di049UjjmadMCYivs6mZwHhL9xPLTx9JfpxdJuJUrPtBHhTK79dpb7Vttd0xxC5_CQjYsevx4AIBBl1MDjGEuX0-YgsWIaKlmhkSapy990nvNAuB3odoS-Ma_aiBVbGrNSX0KDL84LGq1uwf0aCgYKAZ4SARMSFQHGX2MiIJh0XoIuv_N0DoIsYnP8Mw0206","refresh_token":"1//0gKjBvXQHr74eCgYIARAAGBASNwF-L9IrT6VMoVL6-Pby4rEA7P-uhROJg7Mcl2PfbiVPdnGQwfJ52ED3eUu8FYFqYWUh2jqUXiQ","scope":"https://www.googleapis.com/auth/drive","token_type":"Bearer","expiry_date":1786298901277};
+const {driveToken}=require("../Model.js");
 const { insertData, deleteChapter } = require("../insertfile/insertData.js");
 const { namedata, getData, secDatafind, getDatasem2, namedatasem2 } = require("../fuctionData/fuction.js");
 const expressError = require("../expressError.js");
-const { nextTick } = require("process");
+
 // const { client_id, client_secret, redirect_uris } = credentials.installed;
 // console.log(process.env.CLIENT_SECRET,process.env.CLIENT_ID,process.env.REDIRECT_URI);
 const oAuth2Client = new google.auth.OAuth2(
@@ -30,7 +25,26 @@ const oAuth2Client = new google.auth.OAuth2(
   process.env.REDIRECT_URI
 );
 router.use(express.urlencoded({ extended: true })); // for parsing form data
-oAuth2Client.setCredentials(token);
+const getToken = async () => {
+    // Return the plain JavaScript object directly (Do NOT use JSON.stringify)
+    return await driveToken.findOne({});
+};
+(async () => {
+    // 1. Wait for data from database
+    let driveTokenValue = await getToken();
+    if (!driveTokenValue) {
+        console.error("No token found in database!");
+        return;}
+    // console.log("Token loaded:", driveTokenValue);
+    // 2. Pass the parsed object into oAuth2Client
+    oAuth2Client.setCredentials(driveTokenValue);
+    // 3. Continue your API calls here
+    startGoogleDriveOperations();
+})();
+function startGoogleDriveOperations() {
+    console.log("OAuth credentials set successfully! Ready to make Drive API calls.");
+}
+// oAuth2Client.setCredentials(driveTokenValue);
 const drive = google.drive({ version: "v3", auth: oAuth2Client });
 // 🔹 1. Home page (upload form)
 router.get("/upload-page", (req, res) => {
@@ -66,17 +80,14 @@ router.post("/upload", upload.single("file"), async (req, res, next) => {
     });
     // delete temp file
     fs.unlinkSync(file.path);
-    //for sec subject
-    if (subject === "sec" || subject == "Sec") {
-      subject = secSubject;
-    }
     await insertData(
       title,
       `https://drive.google.com/file/d/${response.data.id}/view?usp=sharing`,
       subject,
       Semester,
       req.user._id,
-      mojor_minor
+      mojor_minor,
+      secSubject
     );
     res.redirect("/");
   } catch (err) {
@@ -87,9 +98,9 @@ router.post("/upload", upload.single("file"), async (req, res, next) => {
 });
 // =====================Delete rought =============================
 router.delete("/deletechapter", async (req, res, next) => {
-  let { subject, Semester, objectID, fileID, major_minor } = req.body;
+  let { subject, Semester, objectID, fileID, major_minor,secSubject} = req.body;
   // console.log(req.get("Referer"));
-  //  console.log(subject, Semester, objectID, fileID,major_minor);
+    // console.log(subject, Semester, objectID, fileID,major_minor,secSubject);
   if (!subject || !Semester || !objectID || !fileID) {
     console.log("subject data  and Semester data wrong");
     throw new expressError("please try again some thing internal problem", 400);
@@ -99,7 +110,7 @@ router.delete("/deletechapter", async (req, res, next) => {
     await getData();
     await secDatafind();
     await getDatasem2();
-    let result = await deleteChapter(subject, Semester, objectID, req.user._id, req.user.admin, major_minor);
+    let result = await deleteChapter(subject, Semester, objectID, req.user._id, req.user.admin, major_minor,secSubject);
     if (result != null && !result.success) {
       throw new expressError(result.message, 400);
     } else if (!result) {

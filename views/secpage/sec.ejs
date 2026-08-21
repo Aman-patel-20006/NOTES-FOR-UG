@@ -1,7 +1,8 @@
 <% layout("layoutAll/layout.ejs") -%>
+<script src="/script/secSubjectList.js"></script>
   <% let courses=null %>
     <% if(semester=="First" ){ %>
-      <% courses=[ { name: "Web Designing" , id: "Web Designing" , department: "Computer Science" ,atrue:true },
+      <% courses=[ { name: "Web Designing" , department: "Computer Science" ,atrue:true },
        {name: "Man and Environment" , department: "Geography" ,atrue:true },
        { name: "Digital Literacy" , department: "DST-CIMS" ,atrue:true }, 
        { name: "Data Analysis using Excel" , department: "Statistics" ,atrue:true},
@@ -11,7 +12,7 @@
           {name: "Waste Management" ,  department: "Botany" ,atrue:false }, 
           { name: "Applied Zoology", department: "Zoology" ,atrue:false },
            { name: "Awareness in Public Health Genomics" , department: "Centre of Genetic Disorders" ,atrue:false } ]; %>
-        <% }else{%>
+        <% }else if(semester=="Second"){%>
           <% courses=[ { name: "Mobile Application Development" , department: "Computer Science" ,atrue:true },
            {name: "Basics of Remote Sensing" , department: "Geography" ,atrue:true },
            {name: "Computational Mathematics with SageMath" , department: "DST-CIMS" ,atrue:true },
@@ -23,7 +24,19 @@
                 { name: "Instrumentation in Chemical Industry" ,department: "Chemistry" ,atrue:true },
                 {name:"Gemology",department:"Gelogy",atrue:true },
                 {name:"Risk Factors for Genetic Disorders",department:"Centre of Genetic Disorders",atrue:true }]; %>
-            <% } %>
+            <% }else{%>
+                        <% courses=[ { name: "Python Programming" , department: "Computer Science" ,atrue:true },
+           {name: "Geography of Tourism" , department: "Geography" ,atrue:true },
+           {name: "Python Programming for Data Analytics" , department: "DST-CIMS" ,atrue:true },
+            {name: "Data Analysis using R" , department: "Statistics" ,atrue:true},
+             {name: "Programming and Data Analysis", department: "PHYSICS" ,atrue:true },
+              {name: "SageMath for Beginners", department: "Mathematics",atrue:true },
+              { name: "Ethnobotany", department: "Botany" ,atrue:true  },
+               { name: "Microscopy and Histology and Histochemistry", department: "Zoology" ,atrue:true  },
+                { name: "Synthetic Methodologies",department: "Chemistry" ,atrue:true },
+                {name:"Geological Field Training",department:"GEOLOGY(EARTH SCIENCE)",atrue:true },
+                {name:"Genetic Counselling and Prevention of Genetic Disorders",department:"Centre of Genetic Disorders",atrue:true }]; %>
+              <% } %>
               <div id="seccontainer">
                 <% courses.forEach(course=> { %>
                   <div id="secsmcon">
@@ -39,8 +52,7 @@
                               </h4>
                               <p>Find all your study resources here <br>
                                 Notes, Papers, MCQs, and Books!</p>
-
-                              <h4>For View Notes Click Me</h4>
+                              <h4>For View Notdepartmentes Click Me</h4>
                           </a>
                   </div>
                   <% }) %>

@@ -8,38 +8,41 @@ const { Aec, chemistry, physics, computerscience, manAndEnvironment, math, secWe
   physicsMajor_one, physicsMajor_two, physicsMinor_one,
   chemistryMajor_one, chemistryMajor_two, chemistryMinor_one, statisticsMajor_one, statisticsMajor_two, statisticsMinor_one,
   mathMajor_one, mathMajor_two, mathMinor_one,
-  geologyMajor_one, geologyMajor_two, geologyMinor_one, Aecsem3, mdsem3 } = require("../Model.js");
+  geologyMajor_one, geologyMajor_two, geologyMinor_one, Aecsem3, mdsem3, PythonProgramming, GeographyofTourism, PythonProgrammingforDataAnalytics,
+  DataAnalysisusingR, ProgrammingandDataAnalysis,
+  SageMathforBeginners, Ethnobotany, MicroscopyandHistologyandHistochemistry, SyntheticMethodologies,
+  GeologicalFieldTraining, GeneticCounsellingandPreventionofGeneticDisorders } = require("../Model.js");
 const ExpressError = require("../expressError.js");
 //data define
 let aecdata = null;
-chemistryData = null;
-csData = null;
-phydata = null;
-staticdata = null;
-mathData = null;
-yogaData = null;
-webData = null;
-manData = null;
-ayorData = null;
+// chemistryData = null;
+// csData = null;
+// phydata = null;
+// staticdata = null;
+// mathData = null;
+// yogaData = null;
+// webData = null;
+// manData = null;
+// ayorData = null;
 datacorrec = null;
 digitalData = null;
-environmentData = null;
+// environmentData = null;
 geologieData = null;
 mxexcelData = null;
 quanintychemistrieData = null;
 smartphonegeoscienceData = null;
 mathsolveData = null;
-AecDatasem2 = null;
-chemistryDatasem2 = null;
-physicsDatasem2 = null;
-computerscienceDatasem2 = null;
-mathDatasem2 = null;
-statisticsDatasem2 = null;
-ayurvedaDatasem2 = null;
+// AecDatasem2 = null;
+// chemistryDatasem2 = null;
+// physicsDatasem2 = null;
+// computerscienceDatasem2 = null;
+// mathDatasem2 = null;
+// statisticsDatasem2 = null;
+// ayurvedaDatasem2 = null;
 // environmentDatasem2 = null;
-geologieDatasem2 = null;
-earthscienceDatasem2 = null;
-zoologyDatasem2 = null;
+// geologieDatasem2 = null;
+// earthscienceDatasem2 = null;
+// zoologyDatasem2 = null;
 mobileDevelopmentData = null;
 basicsofremoteSensingData = null;
 computationalMathematicsData = null;
@@ -52,8 +55,8 @@ instrumentationinChemicalData = null;
 gemologyData = null;
 riskFactorsData = null;
 webLegal = null;
-mdvalue = null;
-mdsem2value = null;
+// mdvalue = null;
+// mdsem2value = null;
 csMajor_onedata = null;
 csMajor_twodata = null;
 csMinor_onedata = null;
@@ -74,22 +77,51 @@ geologyMajor_twodata = null;
 geologyMinor_onedata = null;
 Aecsem3data = null;
 mdsem3data = null;
+// sec sem three data
+// PythonProgrammingDataSecThird=null;
+// GeographyofTourismDataSecThird=null;
+// PythonProgrammingforDataAnalyticsDataSecThird=null;
+//   DataAnalysisusingRDataSecThird=null;
+//   ProgrammingandDataAnalysisDataSecThird=null;
+//   SageMathforBeginnersDataSecThird=null;
+//   EthnobotanyDataSecThird=null;
+//   MicroscopyandHistologyandHistochemistryDataSecThird=null;
+//   SyntheticMethodologiesDataSecThird=null;
+//   GeologicalFieldTrainingDataSecThird=null;
+//   GeneticCounsellingandPreventionofGeneticDisordersDataSecThird=null;
+// to find sec data frome 
 //to find mongodb dat
+async function getDataThirdSemSec(name) {
+      console.log(name);
+  switch (name) {
+    case "python programming": return await PythonProgramming.find().sort({ _id: 1 }).populate("uploadedBy");
+    case "geography of tourism": return await GeographyofTourism.find().sort({ _id: 1 }).populate("uploadedBy");
+    case "python programming for data analytics": return await PythonProgrammingforDataAnalytics.find().sort({ _id: 1 }).populate("uploadedBy");
+    case "data analysis using r": return await DataAnalysisusingR.find().sort({ _id: 1 }).populate("uploadedBy");
+    case "programming and data analysis": return await ProgrammingandDataAnalysis.find().sort({ _id: 1 }).populate("uploadedBy");
+    case "sagemath for beginners": return await SageMathforBeginners.find().sort({ _id: 1 }).populate("uploadedBy");
+    case "ethnobotany": return await Ethnobotany.find().sort({ _id: 1 }).populate("uploadedBy");
+    case "microscopy and histology and histochemistry": return await MicroscopyandHistologyandHistochemistry.find().sort({ _id: 1 }).populate("uploadedBy");
+    case "synthetic methodologies": return await SyntheticMethodologies.find().sort({ _id: 1 }).populate("uploadedBy");
+    case "geological field training": return await GeologicalFieldTraining.find().sort({ _id: 1 }).populate("uploadedBy");
+    case "genetic counselling and prevention of genetic disorders": return await GeneticCounsellingandPreventionofGeneticDisorders.find().sort({ _id: 1 }).populate("uploadedBy");
+  }
+}
 async function getData() {
   try {
-    aecdata = await Aec.find().sort({ _id: 1 }).populate("uploadedBy");
-    chemistryData = await chemistry.find().sort({ _id: 1 }).populate("uploadedBy");
-    csData = await computerscience.find().sort({ _id: 1 }).populate("uploadedBy");
-    phydata = await physics.find().sort({ _id: 1 }).populate("uploadedBy");
-    mathData = await math.find().sort({ _id: 1 }).populate("uploadedBy");
-    yogaData = await yoga.find().sort({ _id: 1 }).populate("uploadedBy");
-    staticdata = await statistics.find().sort({ _id: 1 }).populate("uploadedBy");
-    ayorData = await ayurveda.find().sort({ _id: 1 }).populate("uploadedBy");
     datacorrec = await datavalid.find().sort({ _id: 1 }).populate("uploadedBy");
-    environmentData = await environment.find().sort({ _id: 1 }).populate("uploadedBy");
-    geologieData = await geologie.find().sort({ _id: 1 }).populate("uploadedBy");
-    webLegal = await websiteLegal.find().sort({ _id: 1 }).populate("uploadedBy");
-    mdvalue = await md.find().sort({ _id: 1 }).populate("uploadedBy");
+    // aecdata = await Aec.find().sort({ _id: 1 }).populate("uploadedBy");
+    // chemistryData = await chemistry.find().sort({ _id: 1 }).populate("uploadedBy");
+    // csData = await computerscience.find().sort({ _id: 1 }).populate("uploadedBy");
+    // phydata = await physics.find().sort({ _id: 1 }).populate("uploadedBy");
+    // mathData = await math.find().sort({ _id: 1 }).populate("uploadedBy");
+    // yogaData = await yoga.find().sort({ _id: 1 }).populate("uploadedBy");
+    // staticdata = await statistics.find().sort({ _id: 1 }).populate("uploadedBy");
+    // ayorData = await ayurveda.find().sort({ _id: 1 }).populate("uploadedBy");
+    // environmentData = await environment.find().sort({ _id: 1 }).populate("uploadedBy");
+    // geologieData = await geologie.find().sort({ _id: 1 }).populate("uploadedBy");
+    // webLegal = await websiteLegal.find().sort({ _id: 1 }).populate("uploadedBy");
+    // mdvalue = await md.find().sort({ _id: 1 }).populate("uploadedBy");
   } catch (error) {
     console.log(error);
   }
@@ -120,23 +152,26 @@ async function secDatafind() {
     throw new ExpressError("Please try again later internal server error", 500);
   }
 }
-function namedata(name) {
+async function namedata(name) {
   switch (name) {
     case "computer":
-    case "computerscience": return csData;
-    case "physics": return phydata;
-    case "Aec": return aecdata;
-    case "aec": return aecdata;
-    case "statistics": return staticdata;
+    case "computerscience": return await computerscience.find().sort({ _id: 1 }).populate("uploadedBy");
+    case "physics": return await physics.find().sort({ _id: 1 }).populate("uploadedBy");
+    case "Aec": return await Aec.find().sort({ _id: 1 }).populate("uploadedBy");
+    case "aec": return await Aec.find().sort({ _id: 1 }).populate("uploadedBy");
+    case "statistics": return await statistics.find().sort({ _id: 1 }).populate("uploadedBy");
     case "mathematics":
-    case "math": return mathData;
-    case "yoga": return yogaData;
+    case "math": return await math.find().sort({ _id: 1 }).populate("uploadedBy");
+    case "yoga": return await yoga.find().sort({ _id: 1 }).populate("uploadedBy");
     case "web designing": return webData;
     case "secWeb": return webData;
     case "manAndEnvironment":
-    case "man and environment": return manData;
+    case "man and environment": return await environment.find().sort({ _id: 1 }).populate("uploadedBy");
     case "chemistry": return chemistryData;
-    case "ayurveda": return ayorData;
+    case "ayurveda": return await ayurveda.find().sort({ _id: 1 }).populate("uploadedBy");
+    case "geologie":
+    case "geology": return await geologie.find().sort({ _id: 1 }).populate("uploadedBy");
+    case "md": return await md.find().sort({ _id: 1 }).populate("uploadedBy");
     case "digitalliteracie":
     case "digital literacy": return digitalData;
     case "mxexcel":
@@ -145,57 +180,54 @@ function namedata(name) {
     case "quality control in chemical analysis": return quanintychemistrieData;
     case "smartphonegeoscience":
     case "smartphone geosciences": return smartphonegeoscienceData;
-    case "geologie":
-    case "geology": return geologieData;
     case "environment": return environmentData;
     case "mathproblemsolving": return mathsolveData;
     case "ethics in academia and mathematical exploration": return mathsolveData;
-    case "websiteLegal": return webLegal;
-    case "md": return mdvalue;
+    case "websiteLegal": return await websiteLegal.find().sort({ _id: 1 }).populate("uploadedBy");
+
     // case "comingSoon":return datacorrec;
     default: return datacorrec;
   }
 }
 async function getDatasem2() {
   try {
-    AecDatasem2 = await Aecsem2.find().sort({ _id: 1 }).populate("uploadedBy");
-    chemistryDatasem2 = await chemistrysem2.find().sort({ _id: 1 }).populate("uploadedBy");
-    physicsDatasem2 = await physicssem2.find().sort({ _id: 1 }).populate("uploadedBy");
-    computerscienceDatasem2 = await computersciencesem2.find().sort({ _id: 1 }).populate("uploadedBy");
-    mathDatasem2 = await mathsem2.find().sort({ _id: 1 }).populate("uploadedBy");
-    yogaDatasem2 = await yogasem2.find().sort({ _id: 1 }).populate("uploadedBy");
-    statisticsDatasem2 = await statisticssem2.find().sort({ _id: 1 }).populate("uploadedBy");
-    ayurvedaDatasem2 = await ayurvedasem2.find().sort({ _id: 1 }).populate("uploadedBy");
-    geologieDatasem2 = await geologiesem2.find().sort({ _id: 1 }).populate("uploadedBy");
-    earthscienceDatasem2 = await earthsciencesem2.find().sort({ _id: 1 }).populate("uploadedBy");
-    zoologyDatasem2 = await zoologysem2.find().sort({ _id: 1 }).populate("uploadedBy");
-    mdsem2value = await mdsem2.find().sort({ _id: 1 }).populate("uploadedBy");
+    // AecDatasem2 = await Aecsem2.find().sort({ _id: 1 }).populate("uploadedBy");
+    // chemistryDatasem2 = await chemistrysem2.find().sort({ _id: 1 }).populate("uploadedBy");
+    // physicsDatasem2 = await physicssem2.find().sort({ _id: 1 }).populate("uploadedBy");
+    // computerscienceDatasem2 = await computersciencesem2.find().sort({ _id: 1 }).populate("uploadedBy");
+    // mathDatasem2 = await mathsem2.find().sort({ _id: 1 }).populate("uploadedBy");
+    // statisticsDatasem2 = await statisticssem2.find().sort({ _id: 1 }).populate("uploadedBy");
+    // ayurvedaDatasem2 = await ayurvedasem2.find().sort({ _id: 1 }).populate("uploadedBy");
+    // geologieDatasem2 = await geologiesem2.find().sort({ _id: 1 }).populate("uploadedBy");
+    // earthscienceDatasem2 = await earthsciencesem2.find().sort({ _id: 1 }).populate("uploadedBy");
+    // zoologyDatasem2 = await zoologysem2.find().sort({ _id: 1 }).populate("uploadedBy");
+    // mdsem2value = await mdsem2.find().sort({ _id: 1 }).populate("uploadedBy");
   } catch (error) {
     console.error("Error fetching sec data:", error);
     throw new ExpressError("Please try again later internal server error", 500);
   }
 }
 
-function namedatasem2(name) {
+async function namedatasem2(name) {
   //  console.log("name is",name);
   switch (name) {
     case "computer":
-    case "computerscience": return computerscienceDatasem2;
-    case "physics": return physicsDatasem2;
-    case "Aec": return AecDatasem2;
-    case "aec": return AecDatasem2;
-    //case "static":return statisticsDatasem2;
-    case "statistics": return statisticsDatasem2;
+    case "computerscience": return await computersciencesem2.find().sort({ _id: 1 }).populate("uploadedBy");
+    case "physics": return await physicssem2.find().sort({ _id: 1 }).populate("uploadedBy");
+    case "Aec": return await Aecsem2.find().sort({ _id: 1 }).populate("uploadedBy");
+    case "aec": return await Aecsem2.find().sort({ _id: 1 }).populate("uploadedBy");
+    case "static":
+    case "statistics": return await statisticssem2.find().sort({ _id: 1 }).populate("uploadedBy");;
     case "math":
-    case "mathematics": return mathDatasem2;
-    case "yoga": return yogaData;
-    case "chemistry": return chemistryDatasem2;
-    case "ayurveda": return ayurvedaDatasem2;
+    case "mathematics": return await mathsem2.find().sort({ _id: 1 }).populate("uploadedBy");
+    case "yoga": return await yoga.find().sort({ _id: 1 }).populate("uploadedBy");
+    case "chemistry": return await chemistrysem2.find().sort({ _id: 1 }).populate("uploadedBy");
+    case "ayurveda": return await ayurvedasem2.find().sort({ _id: 1 }).populate("uploadedBy");
     case "geologie":
-    case "geology": return geologieDatasem2;
+    case "geology": return await geologiesem2.find().sort({ _id: 1 }).populate("uploadedBy");
     case "environment": return environmentData;
-    case "earthscience": return earthscienceDatasem2;
-    case "zoology": return zoologyDatasem2;
+    case "earthscience": return await earthsciencesem2.find().sort({ _id: 1 }).populate("uploadedBy");
+    case "zoology": return await zoologysem2.find().sort({ _id: 1 }).populate("uploadedBy");
     case "mobileDevelopment":
     case "mobile application development": return mobileDevelopmentData;
     case "basicsofremoteSensing":
@@ -217,7 +249,7 @@ function namedatasem2(name) {
     case "gemology": return gemologyData;
     case "riskFactors":
     case "risk factors for genetic disorders": return riskFactorsData;
-    case "md": return mdsem2value;
+    case "md": return await mdsem2.find().sort({ _id: 1 }).populate("uploadedBy");
     default: return datacorrec;
   }
 }
@@ -298,11 +330,11 @@ function namedatasem3(subject, major_minor) {
     aec: Aecsem3data,
     md: mdsem3data,
   };
-  if(major_minor){
-      return data[subject]?.[major_minor];
-  }else{
-  return data[subject];
+  if (major_minor) {
+    return data[subject]?.[major_minor];
+  } else {
+    return data[subject];
   }
 
 }
-module.exports = { namedata, getData, secDatafind, getDatasem2, namedatasem2, getDatasem3, namedatasem3 };
+module.exports = { namedata, getData, secDatafind, getDatasem2, namedatasem2, getDatasem3, namedatasem3, getDataThirdSemSec };

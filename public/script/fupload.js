@@ -2,6 +2,7 @@
 const fileupload = document.getElementsByClassName('file-upload');
 const fileInput = document.getElementById('fileInput');
 const fileName = document.getElementById('file-name');
+// input of title and name
 fileInput.addEventListener('change', () => {
   fileupload[0].style.background = "transparent";
   fileName.textContent = fileInput.files.length
@@ -65,7 +66,6 @@ selectSem.addEventListener('change', () => {
     //second semester
     secSecondsem.style.display = "none";
     secSecondsem.disabled = true;
-
   } else if ((selectSem.selectedOptions[0].value === "Third")&&(selectSub.selectedOptions[0].value == "computerscience" || selectSub.selectedOptions[0].value == "physics" || selectSub.selectedOptions[0].value == "chemistry" || selectSub.selectedOptions[0].value == "math" || selectSub.selectedOptions[0].value == "statistics" || selectSub.selectedOptions[0].value == "geologie")){
        //major minor option
     major_minor.style.display ='';
@@ -80,11 +80,20 @@ selectSem.addEventListener('change', () => {
     thirdsemsec.style.display = "none";
     thirdsemsec.disabled = true;
    } 
-  // else if (selectSem.selectedOptions[0].value === "First" || selectSem.selectedOptions[0].value === "Second") {
-  //   //major minor option
-  //   major_minor.style.display = "none";
-  //   major_minor.disabled = false;
-  // }
+  else if (selectSem.selectedOptions[0].value === "First" || selectSem.selectedOptions[0].value === "Second") {
+    //major minor option
+    major_minor.style.display = "none";
+    major_minor.disabled = ture;
+     //  first sem 
+    selectSec.style.display = "none"; // DISPLAYA ON SCREEN 
+    selectSec.disabled = true;// DISPLAY SELECTION VALUE
+    //second sem 
+    secSecondsem.style.display = "none";
+    secSecondsem.disabled = true;
+   //sec third sem 
+    thirdsemsec.style.display = "none";
+    thirdsemsec.disabled = true;
+  }
 })
 selectSub.addEventListener('change', () => {
   let sub = selectSub.selectedOptions[0].value;
@@ -178,16 +187,22 @@ document.getElementById("form").addEventListener("submit", async function (e) {
   const namevalid = document.getElementById('name');
   const Semester = document.getElementById('SEMESTER').value;
   const major_minor = document.getElementById("mojor_minor").value;// major and minor select
-  // console.dir(selectSec.selectedOptions[0].value);
-  let subj = selectSub.selectedOptions[0].value;
-  // console.log(subj);
-  let subject = (subj === "sec") ? ((Semester == "First") ? selectSec.selectedOptions[0].value : secSecondsem.selectedOptions[0].value) : subj;
-  // console.log(subject);
+  //  console.dir(selectSec.selectedOptions[0].value);
+let subject=selectSub.selectedOptions[0].value; 
+  let secSubjectvalue = null;
+   if(subject=== "sec"){ 
+    if(Semester == "First"){
+      secSubjectvalue=selectSec.selectedOptions[0].value;
+    }else if(Semester == "Second"){
+      secSubjectvalue=secSecondsem.selectedOptions[0].value;
+    }else{
+      secSubjectvalue=thirdsemsec.selectedOptions[0].value;
+    }}
   const title = namevalid.value.trim();
-  const response = await fetch(`/check-title?title=${encodeURIComponent(title)}&subject=${encodeURIComponent(subject)}&Semester=${encodeURIComponent(Semester)}&major_minor=${encodeURIComponent(major_minor)}`);
+  const response = await fetch(`/check-title?title=${encodeURIComponent(title)}&subject=${encodeURIComponent(subject)}&Semester=${encodeURIComponent(Semester)}&major_minor=${encodeURIComponent(major_minor)}&secSubject=${encodeURIComponent(secSubjectvalue)}`);
 const data = await response.json();
-console.log(data.exist);
-console.log(data.message); // 👈 fetch text response
+ console.log(data.exist);
+ console.log(data.message); // 👈 fetch text response
   if (data.exist) {
     alert(data.message);
   } else {

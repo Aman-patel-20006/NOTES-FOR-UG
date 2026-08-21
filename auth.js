@@ -1,3 +1,6 @@
+const {driveToken}=require("./Model.js");
+const  {conect}=require("./mongoconect.js");
+conect();
 const { google } = require("googleapis");
 const readline = require("readline");
 const fs = require("fs");
@@ -25,7 +28,9 @@ const rl = readline.createInterface({
 
 rl.question("Enter code: ", async (code) => {
   const { tokens } = await oAuth2Client.getToken(code);
-  fs.writeFileSync("token.json", JSON.stringify(tokens));
-  console.log("Token saved! ✅");
-  rl.close();
+       let aman= await driveToken.updateOne({}, tokens, { upsert: true });
+          console.log(tokens,aman);
+  // fs.writeFileSync("token.json", JSON.stringify(tokens));
+  // console.log("Token saved! ✅");
+  // rl.close();
 });

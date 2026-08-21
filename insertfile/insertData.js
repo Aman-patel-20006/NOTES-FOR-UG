@@ -15,7 +15,10 @@ const { Aec, chemistry, physics, computerscience, manAndEnvironment, math, secWe
   physicsMajor_one, physicsMajor_two, physicsMinor_one,
   chemistryMajor_one, chemistryMajor_two, chemistryMinor_one, statisticsMajor_one, statisticsMajor_two, statisticsMinor_one,
   mathMajor_one, mathMajor_two, mathMinor_one,
-  geologyMajor_one, geologyMajor_two, geologyMinor_one, Aecsem3, mdsem3 } = require("../Model.js");
+  geologyMajor_one, geologyMajor_two, geologyMinor_one, Aecsem3, mdsem3, PythonProgramming, GeographyofTourism, PythonProgrammingforDataAnalytics,
+  DataAnalysisusingR, ProgrammingandDataAnalysis,
+  SageMathforBeginners, Ethnobotany, MicroscopyandHistologyandHistochemistry, SyntheticMethodologies,
+  GeologicalFieldTraining, GeneticCounsellingandPreventionofGeneticDisorders } = require("../Model.js");
 const models = {
   aec: Aec,
   Aec: Aec,
@@ -76,24 +79,90 @@ let modelsem3 = {
   aec: Aecsem3,
   md: mdsem3
 }
+// function SubjectSecModel(secSubject) {
+//   console.log("subjectSecModel run",secSubject);
+//   switch (secSubject.trim().toLowerCase()) {
+//     case "python programming":
+//       return PythonProgramming;
+
+//     case "geography of tourism":
+//       return GeographyofTourism;
+
+//     case "python programming for data analytics":
+//       return PythonProgrammingforDataAnalytics;
+
+//     case "data analysis using r":
+//       return DataAnalysisusingR;
+
+//     case "programming and data analysis":
+//       return ProgrammingandDataAnalysis;
+
+//     case "sagemath for beginners":
+//       return SageMathforBeginners;
+
+//     case "ethnobotany":
+//       return Ethnobotany;
+
+//     case "microscopy and histology and histochemistry":
+//       return MicroscopyandHistologyandHistochemistry;
+
+//     case "synthetic methodologies":
+//       return SyntheticMethodologies;
+
+//     case "geological field training":
+//       return GeologicalFieldTraining;
+
+//     case "genetic counselling and prevention of genetic disorders":
+//       return GeneticCounsellingandPreventionofGeneticDisorders;
+//     default:
+//       return null;
+//   }
+// }
+let SubjectSecModel = {
+    "python programming": PythonProgramming,
+    "geography of tourism": GeographyofTourism,
+    "python programming for data analytics": PythonProgrammingforDataAnalytics,
+    "data analysis using r": DataAnalysisusingR,
+    "programming and data analysis": ProgrammingandDataAnalysis,
+    "sagemath for beginners": SageMathforBeginners,
+    "ethnobotany": Ethnobotany,
+    "microscopy and histology and histochemistry": MicroscopyandHistologyandHistochemistry,
+    "synthetic methodologies": SyntheticMethodologies,
+    "geological field training": GeologicalFieldTraining,
+    "genetic counselling and prevention of genetic disorders":GeneticCounsellingandPreventionofGeneticDisorders
+};
 //delete object
-async function deleteChapter(subject, Semester, id, currUserID, admin, major_minor = '') {
+async function deleteChapter(subject, Semester, id, currUserID, admin,major_minor = '',secSubject) {
   let subjectModel = null;
+  console.log(subject, Semester, id, currUserID, admin,major_minor ,secSubject);
   if (Semester.trim() === "First") {
-    subjectModel = models[subject.toLowerCase()];
+    //for sec subject
+    if ((subject === "sec" || subject == "Sec")) {
+      subjectModel = models[secSubject];
+    } else {
+      subjectModel = models[subject];
+    }
+
   } else if (Semester.trim() === "Second") {
-    subjectModel = models2[subject.toLowerCase()];
+    if ((subject === "sec" || subject == "Sec")) {
+      subjectModel = models2[secSubject];
+    } else {
+      subjectModel = models2[subject];
+    }
   } else if (Semester.trim() === "Third") {
     if (subject == "md" || subject == "Aec" || subject == "aec") {
       subjectModel = modelsem3[subject];
-    } else {
+    } else if (subject == 'sec') {
+      // console.log("sec subject find is run",secSubject);
+      subjectModel =SubjectSecModel[secSubject];
+      // console.log(subjectModel, secSubject);
+    }else {
       let subject_major_minor = modelsem3[subject];
-      // console.log("subject model",subject_major_minor);
-      // console.log("major",major_minor);
+      // console.log(subject_major_minor);
       subjectModel = subject_major_minor[major_minor];
-        // console.log(subjectModel);
+      //  console.log(subjectModel);
     }
-  } else { console.log("not found model"); }
+  }
   // ✅ get actual model from name
   if (!subjectModel) {
     console.log("Invalid subject for model:", subject);
@@ -104,7 +173,6 @@ async function deleteChapter(subject, Semester, id, currUserID, admin, major_min
   }
   try {
     let charObject = await subjectModel.findById(id);
-    console.log
     // if (admin || (charObject.uploadedBy)?.toString() === currUserID.toString() ) {
     if (admin || String(charObject?.uploadedBy) === String(currUserID)) {
       let result = await subjectModel.findByIdAndDelete(id);
@@ -127,17 +195,31 @@ async function deleteChapter(subject, Semester, id, currUserID, admin, major_min
     }
   }
 }
-async function insertData(title, src, subject, Semester, userId, major_minor = '') {
+async function insertData(title, src, subject, Semester, userId, major_minor="major_minor_null", secSubject="secSubject_null") {
   let subjectModel = null;
-  //  console.log(title, src, subject, Semester,major_minor);
+  // console.log(title, src, subject, Semester, major_minor, secSubject,"insert data function use");
   if (Semester.trim() === "First") {
-    subjectModel = models[subject];
+    //for sec subject
+    if ((subject === "sec" || subject == "Sec")) {
+      subjectModel = models[secSubject];
+    } else {
+      subjectModel = models[subject];
+    }
+
   } else if (Semester.trim() === "Second") {
-    subjectModel = models2[subject];
+    if ((subject === "sec" || subject == "Sec")) {
+      subjectModel = models[secSubject];
+    } else {
+      subjectModel = models2[subject];
+    }
   } else if (Semester.trim() === "Third") {
     if (subject == "md" || subject == "Aec" || subject == "aec") {
       subjectModel = modelsem3[subject];
-    } else {
+    } else if (subject == 'sec') {
+      // console.log("sec subject find is run",secSubject);
+      subjectModel =SubjectSecModel[secSubject];
+      // console.log(subjectModel, secSubject);
+    }else {
       let subject_major_minor = modelsem3[subject];
       // console.log(subject_major_minor);
       subjectModel = subject_major_minor[major_minor];
@@ -146,7 +228,7 @@ async function insertData(title, src, subject, Semester, userId, major_minor = '
   }
   //  get actual model from name
   if (!subjectModel) {
-    console.log("Invalid subject:", subject);
+    console.log("Invalid subject:",subject,"secsubject vale",secSubject);
     return;
   }
   try {

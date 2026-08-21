@@ -15,18 +15,32 @@ const Schemamodel = new mongoose.Schema({
   }
 });
 
-// let Schemamodelupload = new mongoose.Schema({
-//   token: {
-//     type: String,
-//     required: true
-//   },
-//   createdAt: {
-//     type: Date,
-//     default: Date.now,
-//     expires: 600 // document auto-deletes after 300 sec (5 min)
-//   },
-  
-// });
+
+let Schemamodelupload = new mongoose.Schema({
+  access_token: {
+    type: String,
+    required: true
+  },
+  refresh_token:{
+    type: String,
+    required: true
+  },
+  scope:{
+  type: String,
+    required: true
+  },
+  token_type:{
+ type: String,
+    required: true
+  },
+  expiry_date:{
+    type:Number,
+    require:true
+  }
+  },
+);
+// made a model for store data of 
+const driveToken= mongoose.model('DriveToken', Schemamodelupload);
 //upload model
 // let uploadtoken=mongoose.model("uploadtoke",Schemamodelupload)
 const Aec = mongoose.model("Aec", Schemamodel);
@@ -88,6 +102,17 @@ const mongooseModelsthirdsem= modelsemthird.reduce((oje, name) => {
   oje[name] = mongoose.model(name, Schemamodel);
   return oje;
 }, {});
+// made third sem sec 
+const modelSemThirdSec=["PythonProgramming","GeographyofTourism","PythonProgrammingforDataAnalytics",
+  "DataAnalysisusingR","ProgrammingandDataAnalysis",
+  "SageMathforBeginners","Ethnobotany","MicroscopyandHistologyandHistochemistry","SyntheticMethodologies",
+  "GeologicalFieldTraining","GeneticCounsellingandPreventionofGeneticDisorders"];
+  //made model
+  const mongooseModelsthirdsemSec= modelSemThirdSec.reduce((oje, name) => {
+  oje[name] = mongoose.model(name, Schemamodel);
+  return oje;
+}, {});
 ///login model schema
  module.exports={Aec,chemistry,physics,computerscience,manAndEnvironment,math,secWeb
-  ,yoga,  statistics,ayurveda,datavalid,digitalliteracie,environment,geologie,mxexcel,quanintychemistrie,smartphonegeoscience,mathproblemsolving,...mongooseModels,websiteLegal,md,...mongooseModelsthirdsem};
+  ,yoga,  statistics,ayurveda,datavalid,digitalliteracie,environment,geologie,mxexcel,quanintychemistrie,
+  smartphonegeoscience,mathproblemsolving,...mongooseModels,websiteLegal,md,...mongooseModelsthirdsem,...mongooseModelsthirdsemSec,driveToken};

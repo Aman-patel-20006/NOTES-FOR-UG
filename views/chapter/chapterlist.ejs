@@ -4,53 +4,61 @@
       <% for (let item of data) { %>
         <div class="chapter">
           <%# major_minor %>
-          <%# currUser.email%>
-            <%# currUser.admin %>
-              <%# item.uploadedBy.email %>
-                <div class="chapter-image">
-                  <% let link=item.src; let id=item.src.slice(item.src.indexOf("/d/")+3,item.src.indexOf("/view")) %>
-                    <img src="https://drive.google.com/thumbnail?id=<%=id %>" alt="PDF Preview" id="pdfImage"
-                      onerror="this.onerror=null; this.src='/image/pdfImage.png';">
-                </div>
-                <div class="chapter-info">
-                  <h4 class="chapter-title"> <span>Title:</span>
-                    <%= item.title %>
-                  </h4>
-                  <div class="chapter-buttons">
-                    <form class="chapter-form">
-                      <input type="hidden" name="title" value="<%= item.title %>">
-                      <%# item.uploadedBy._id %>
-                        <% if(currUser && currUser.admin) { %>
-                          <button type="submit" disabled class="btn edit-button">
-                            EDIT
-                          </button>
-                          <% } else if( item.uploadedBy && item.uploadedBy._id && currUser && currUser._id.toString()===item.uploadedBy._id.toString() ) { %>
-                            <button type="submit" class="btn edit-button">
+            <%# currUser.email%>
+              <%# currUser.admin %>
+                <%# item.uploadedBy.email %>
+                  <div class="chapter-image">
+                    <% let link=item.src; let id=item.src.slice(item.src.indexOf("/d/")+3,item.src.indexOf("/view")) %>
+                      <img src="https://drive.google.com/thumbnail?id=<%=id %>" alt="PDF Preview" id="pdfImage"
+                        onerror="this.onerror=null; this.src='/image/pdfImage.png';">
+                  </div>
+                     <% if (item.uploadedBy) { %>
+                      <details style="color:rgb(93, 53, 237)">
+                    <summary><small>Click here to view details about this note</small></summary>
+                        <p style="padding:0px 5px 0px 5px;"><small> THIS PDF NOTE WAS UPLOADED BY <b> <%= item.uploadedBy.username%>  </b>, <b><%= item.uploadedBy.majorsubject?.toUpperCase() %></b> AS MAJOR SUBJECT AT BHU. </small></p>
+                    </details>
+                  <% } %>
+                  <div class="chapter-info">
+                    <h4 class="chapter-title"> <span>Title:</span>
+                      <%= item.title %>
+                    </h4>
+                    <div class="chapter-buttons">
+                      <form class="chapter-form">
+                        <input type="hidden" name="title" value="<%= item.title %>">
+                        <%# item.uploadedBy._id %>
+                          <% if(currUser && currUser.admin) { %>
+                            <button type="submit" disabled class="btn edit-button">
                               EDIT
                             </button>
+                            <% } else if( item.uploadedBy && item.uploadedBy._id && currUser &&
+                              currUser._id.toString()===item.uploadedBy._id.toString() ) { %>
+                              <button type="submit" class="btn edit-button">
+                                EDIT
+                              </button>
+                              <% } %>
+                      </form>
+                      <form action="/viewsChapterpdf" method="get" class="chapter-form">
+                        <input type="hidden" name="src" value="<%= item.src %>">
+                        <button type="submit" class="btn view-button">VIEW</button>
+                      </form>
+                      <form action="/deletechapter?_method=DELETE" method="post" class="chapter-form">
+                        <input type="hidden" name="subject" value="<%=name%>">
+                        <input type="hidden" name="fileID" value="<%=id%>">
+                        <input type="hidden" name="Semester" value="<%=semester %>">
+                        <input type="hidden" name="objectID" value="<%=item._id%>">
+                        <input type="hidden" name="major_minor" value="<%= major_minor %>">
+                        <% if(currUser && currUser.admin) { %>
+                          <button type="submit" class="btn delete-button"
+                            onclick="return confirm('Are you sure you want to delete this?'); ">DELETE</button>
+                          <% } else if( item.uploadedBy && item.uploadedBy._id && currUser &&
+                            currUser._id.toString()===item.uploadedBy._id.toString() ) { %>
+                            <button type="submit" class="btn delete-button"
+                              onclick="return confirm('Are you sure you want to delete this?'); ">DELETE</button>
                             <% } %>
-                    </form>
-                    <form action="/viewsChapterpdf" method="get" class="chapter-form">
-                      <input type="hidden" name="src" value="<%= item.src %>">
-                      <button type="submit" class="btn view-button">VIEW</button>
-                    </form>
-                    <form action="/deletechapter?_method=DELETE" method="post" class="chapter-form">
-                      <input type="hidden" name="subject" value="<%=name%>">
-                      <input type="hidden" name="fileID" value="<%=id%>">
-                      <input type="hidden" name="Semester" value="<%=semester %>">
-                      <input type="hidden" name="objectID" value="<%=item._id%>">
-                       <input type="hidden" name="major_minor" value="<%= major_minor %>">
-                      <% if(currUser && currUser.admin) { %>
-                        <button type="submit" class="btn delete-button"
-                          onclick="return confirm('Are you sure you want to delete this?'); ">DELETE</button>
-                   <% } else if( item.uploadedBy && item.uploadedBy._id && currUser && currUser._id.toString()===item.uploadedBy._id.toString() ) { %>
-                                                        <button type="submit" class="btn delete-button"
-                          onclick="return confirm('Are you sure you want to delete this?'); ">DELETE</button>
-                          <% } %>
-                    </form>
-            
+                      </form>
+                    </div>
+
                   </div>
-                </div>
         </div>
         <% } %>
   </div>

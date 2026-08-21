@@ -9,6 +9,12 @@
               <img src="https://drive.google.com/thumbnail?id=<%=id %>" alt="PDF Preview" id="pdfImage"
                 onerror="this.onerror=null; this.src='/image/pdfImage.png';">
           </div>
+              <% if (item.uploadedBy) { %>
+                      <details style="color:rgb(93, 53, 237)">
+                    <summary><small>Click here to view details about this note</small></summary>
+                        <p style="padding:0px 5px 0px 5px;"><small> THIS PDF NOTE WAS UPLOADED BY <b> <%= item.uploadedBy.username%>  </b>, <b><%= item.uploadedBy.majorsubject?.toUpperCase() %></b> AS MAJOR SUBJECT AT BHU. </small></p>
+                    </details>
+                  <% } %>
           <div class="chapter-info">
             <h4 class="chapter-title"> <span>Title:</span>
               <%= item.title %>
@@ -27,10 +33,11 @@
                 <button type="submit" class="btn view-button">VIEW</button>
               </form>
               <form action="/deletechapter?_method=DELETE" method="post" class="chapter-form">
-                <input type="hidden" name="subject" value="<%=name%>">
+                <input type="hidden" name="subject" value="sec">
                 <input type="hidden" name="fileID" value="<%=id%>">
                 <input type="hidden" name="Semester" value="<%=semester %>">
                 <input type="hidden" name="objectID" value="<%=item._id%>">
+                 <input type="hidden" name="secSubject" value="<%=name%>">
      <% if(currUser && currUser.admin) { %>
                   <button type="submit" class="btn delete-button"
                     onclick="return confirm('Are you sure you want to delete this?'); ">DELETE</button>
