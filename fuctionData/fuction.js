@@ -15,7 +15,7 @@ const { Aec, chemistry, physics, computerscience, manAndEnvironment, math, secWe
 const ExpressError = require("../expressError.js");
 //data define
 let aecdata = null;
-// chemistryData = null;
+ chemistryData = null;
 // csData = null;
 // phydata = null;
 // staticdata = null;
@@ -111,7 +111,7 @@ async function getData() {
   try {
     datacorrec = await datavalid.find().sort({ _id: 1 }).populate("uploadedBy");
     // aecdata = await Aec.find().sort({ _id: 1 }).populate("uploadedBy");
-    // chemistryData = await chemistry.find().sort({ _id: 1 }).populate("uploadedBy");
+    //  chemistryData = await chemistry.find().sort({ _id: 1 }).populate("uploadedBy");
     // csData = await computerscience.find().sort({ _id: 1 }).populate("uploadedBy");
     // phydata = await physics.find().sort({ _id: 1 }).populate("uploadedBy");
     // mathData = await math.find().sort({ _id: 1 }).populate("uploadedBy");
@@ -167,7 +167,8 @@ async function namedata(name) {
     case "secWeb": return webData;
     case "manAndEnvironment":
     case "man and environment": return await environment.find().sort({ _id: 1 }).populate("uploadedBy");
-    case "chemistry": return chemistryData;
+    // case "chemistry": return chemistryData;
+    case"chemistry":return  await chemistry.find().sort({ _id: 1 }).populate("uploadedBy");
     case "ayurveda": return await ayurveda.find().sort({ _id: 1 }).populate("uploadedBy");
     case "geologie":
     case "geology": return await geologie.find().sort({ _id: 1 }).populate("uploadedBy");
